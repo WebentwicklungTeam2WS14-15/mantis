@@ -2050,6 +2050,8 @@
 		'severity',
 		'reproducibility',
 		'platform',
+		'os',
+		'os_version',
 		'product_version',
 		'product_build',
 		'target_version',
@@ -2060,8 +2062,7 @@
 		'attachments',
 		'due_date',
 	);
-//'os',
-	//	'os_version',
+
 	/**
 	 * An array of the fields to show on the bug view page.
 	 *
@@ -3103,7 +3104,7 @@
 	 * Use persistent database connections
 	 * @global int $g_use_persistent_connections
 	 */
-	$g_use_persistent_connections	= OFF;
+	$g_use_persistent_connections	= ON;
 
 	/*****************
 	 * Include files *
