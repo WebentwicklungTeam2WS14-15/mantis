@@ -3104,7 +3104,7 @@
 	 * Use persistent database connections
 	 * @global int $g_use_persistent_connections
 	 */
-	$g_use_persistent_connections	= ON;
+	$g_use_persistent_connections	= OFF;
 
 	/*****************
 	 * Include files *
