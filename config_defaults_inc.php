@@ -599,7 +599,7 @@
 	 * language preference.
 	 * @global string $g_default_language
 	 */
-	$g_default_language		= 'english';
+	$g_default_language		= 'german';
 
 	/**
 	 * list the choices that the users are allowed to choose
@@ -724,7 +724,7 @@
 	 * Fallback for automatic language selection
 	 * @global string $g_fallback_language
 	 */
-	$g_fallback_language	= 'english';
+	$g_fallback_language	= 'german';
 
 	/*****************************
 	 * MantisBT Display Settings *
@@ -734,7 +734,7 @@
 	 * browser window title
 	 * @global string $g_window_title
 	 */
-	$g_window_title			= 'MantisBT';
+	$g_window_title			= 'Stadt Dorsten';
 
 	/**
 	 * title at top of html page (empty by default, since there is a logo now)
@@ -2050,8 +2050,6 @@
 		'severity',
 		'reproducibility',
 		'platform',
-		'os',
-		'os_version',
 		'product_version',
 		'product_build',
 		'target_version',
@@ -2062,7 +2060,8 @@
 		'attachments',
 		'due_date',
 	);
-
+//'os',
+	//	'os_version',
 	/**
 	 * An array of the fields to show on the bug view page.
 	 *
