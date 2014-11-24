@@ -250,7 +250,7 @@
 	 * @see $g_send_reset_password
 	 * @global int $g_allow_signup
 	 */
-	$g_allow_signup			= OFF;
+	$g_allow_signup			= ON;
 
 	/**
 	 * Max. attempts to login using a wrong password before lock the account.
@@ -394,13 +394,13 @@
 	 *        '<status>': eg: 'resolved', 'closed', 'feedback', 'acknowledged', ...etc.
 	 *                     this list corresponds to $g_status_enum_string
 	 *
-	 * If you wanted to have all complainmgrs get notified of new bugs you might add
+	 * If you wanted to have all developers get notified of new bugs you might add
 	 * the following lines to your config file:
 	 *
-	 * $g_notify_flags['new']['threshold_min'] = COMPLAINMGR;
-	 * $g_notify_flags['new']['threshold_max'] = COMPLAINMGR;
+	 * $g_notify_flags['new']['threshold_min'] = DEVELOPER;
+	 * $g_notify_flags['new']['threshold_max'] = DEVELOPER;
 	 *
-	 * You might want to do something similar so all majors are notified when a
+	 * You might want to do something similar so all managers are notified when a
 	 * bug is closed.  If you didn't want reporters to be notified when a bug is
 	 * closed (only when it is resolved) you would use:
 	 *
@@ -973,7 +973,7 @@
 	 * Only users above this threshold will have their avatar shown
 	 * @global int $g_show_avatar_threshold
 	 */
-	$g_show_avatar_threshold = COMPLAINMGR;
+	$g_show_avatar_threshold = DEVELOPER;
 
 	/**
 	 * Show release dates on changelog
@@ -1118,7 +1118,7 @@
 	 * threshold for viewing private news
 	 * @global int $g_private_news_threshold
 	 */
-	$g_private_news_threshold	= COMPLAINMGR;
+	$g_private_news_threshold	= DEVELOPER;
 
 	/********************************
 	 * MantisBT Default Preferences *
@@ -1402,7 +1402,7 @@
 	 * threshold for viewing summary
 	 * @global int $g_view_summary_threshold
 	 */
-	$g_view_summary_threshold	= MAJOR;
+	$g_view_summary_threshold	= MANAGER;
 
 	/**
 	 * Define the multipliers which are used to determine the effectiveness
@@ -1492,7 +1492,7 @@
 	 * The access level is that of the project to which the issue belongs.
 	 * @global int $g_reminder_receive_threshold
 	 */
-	$g_reminder_receive_threshold = COMPLAINMGR;
+	$g_reminder_receive_threshold = DEVELOPER;
 
 	/*********************************
 	 * MantisBT Sponsorship Settings *
@@ -1533,14 +1533,14 @@
 	 * Access level required to be able to handle sponsored issues.
 	 * @global int $g_handle_sponsored_bugs_threshold
 	 */
-	$g_handle_sponsored_bugs_threshold = COMPLAINMGR;
+	$g_handle_sponsored_bugs_threshold = DEVELOPER;
 
 	/**
 	 * Access level required to be able to assign a sponsored issue to a user with access level
 	 * greater or equal to 'handle_sponsored_bugs_threshold'.
 	 * @global int $g_assign_sponsored_bugs_threshold
 	 */
-	$g_assign_sponsored_bugs_threshold = MAJOR;
+	$g_assign_sponsored_bugs_threshold = MANAGER;
 
 	/**
 	 * Minimum sponsorship amount. If the user enters a value less than this, an error will be prompted.
@@ -1834,7 +1834,7 @@
 	 * When a note is added to a bug currently in $g_bug_feedback_status, and the note
 	 * author is the bug's reporter, this option will automatically set the bug status
 	 * to $g_bug_submit_status or $g_bug_assigned_status if the bug is assigned to a
-	 * complainmgr.  Defaults to enabled.
+	 * developer.  Defaults to enabled.
 	 * @global boolean $g_reassign_on_feedback
 	 */
 	$g_reassign_on_feedback = ON;
@@ -1861,7 +1861,7 @@
 
 	/**
 	 * Threshold resolution which denotes that a bug has been resolved and
-	 * successfully fixed by complainmgrs. Resolutions above this threshold
+	 * successfully fixed by developers. Resolutions above this threshold
 	 * and below $g_bug_resolution_not_fixed_threshold are considered to be
 	 * resolved successfully.
 	 * @global int $g_bug_resolution_fixed_threshold
@@ -1870,7 +1870,7 @@
 
 	/**
 	 * Threshold resolution which denotes that a bug has been resolved without
-	 * being successfully fixed by complainmgrs. Resolutions above this
+	 * being successfully fixed by developers. Resolutions above this
 	 * threshold are considered to be resolved in an unsuccessful way.
 	 * @global int $g_bug_resolution_not_fixed_threshold
 	 */
@@ -1981,7 +1981,7 @@
 	 * access level needed to delete bug attachments
 	 * @global int $g_delete_attachments_threshold
 	 */
-	$g_delete_attachments_threshold	= COMPLAINMGR;
+	$g_delete_attachments_threshold	= DEVELOPER;
 
 	/**
 	 * allow users to view attachments uploaded by themselves even if their access
@@ -2249,7 +2249,7 @@
 	 * Look in the constant_inc.php file if you want to set a different value.
 	 * @global int $g_monitor_add_others_bug_threshold
 	 */
-	$g_monitor_add_others_bug_threshold = COMPLAINMGR;
+	$g_monitor_add_others_bug_threshold = DEVELOPER;
 
 	/**
 	 * Access level needed to delete other users from the list of users
@@ -2257,20 +2257,20 @@
 	 * Look in the constant_inc.php file if you want to set a different value.
 	 * @global int $g_monitor_delete_others_bug_threshold
 	 */
-	$g_monitor_delete_others_bug_threshold = COMPLAINMGR;
+	$g_monitor_delete_others_bug_threshold = DEVELOPER;
 
 	/**
 	 * access level needed to view private bugs
 	 * Look in the constant_inc.php file if you want to set a different value
 	 * @global int $g_private_bug_threshold
 	 */
-	$g_private_bug_threshold		= COMPLAINMGR;
+	$g_private_bug_threshold		= DEVELOPER;
 
 	/**
 	 * access level needed to be able to be listed in the assign to field.
 	 * @global int $g_handle_bug_threshold
 	 */
-	$g_handle_bug_threshold			= COMPLAINMGR;
+	$g_handle_bug_threshold			= DEVELOPER;
 
 	/**
 	 * access level needed to show the Assign To: button bug_view*_page or
@@ -2286,7 +2286,7 @@
 	 * Look in the constant_inc.php file if you want to set a different value
 	 * @global int $g_private_bugnote_threshold
 	 */
-	$g_private_bugnote_threshold	= COMPLAINMGR;
+	$g_private_bugnote_threshold	= DEVELOPER;
 
 	/**
 	 * access level needed to view handler in bug reports and notification email
@@ -2307,13 +2307,13 @@
 	 * set to NOBODY to disable the feature
 	 * @global int $g_bug_reminder_threshold
 	 */
-	$g_bug_reminder_threshold		= COMPLAINMGR;
+	$g_bug_reminder_threshold		= DEVELOPER;
 
 	/**
 	 * Access lever required to drop bug history revisions
 	 * @global int $g_bug_revision_drop_threshold
 	 */
-	$g_bug_revision_drop_threshold = MAJOR;
+	$g_bug_revision_drop_threshold = MANAGER;
 
 	/**
 	 * access level needed to upload files to the project documentation section
@@ -2321,7 +2321,7 @@
 	 * See also: $g_upload_bug_file_threshold, $g_allow_file_upload
 	 * @global int $g_upload_project_file_threshold
 	 */
-	$g_upload_project_file_threshold = MAJOR;
+	$g_upload_project_file_threshold = MANAGER;
 
 	/**
 	 * access level needed to upload files to attach to a bug
@@ -2344,7 +2344,7 @@
 	 * Update bugnote threshold (if the bugnote is not your own)
 	 * @global int $g_update_bugnote_threshold
 	 */
-	$g_update_bugnote_threshold = COMPLAINMGR;
+	$g_update_bugnote_threshold = DEVELOPER;
 
 	/**
 	 * Threshold needed to view project documentation
@@ -2353,10 +2353,10 @@
 	$g_view_proj_doc_threshold = ANYBODY;
 
 	/**
-	 * Site major
+	 * Site manager
 	 * @global int $g_manage_site_threshold
 	 */
-	$g_manage_site_threshold = MAJOR;
+	$g_manage_site_threshold = MANAGER;
 
 	/**
 	 * Threshold at which a user is considered to be a site administrator.
@@ -2374,13 +2374,13 @@
 	 * details (not to add/delete projects) ...etc.
 	 * @global int $g_manage_project_threshold
 	 */
-	$g_manage_project_threshold = MAJOR;
+	$g_manage_project_threshold = MANAGER;
 
 	/**
 	 * Threshold needed to add/delete/modify news
 	 * @global int $g_manage_news_threshold
 	 */
-	$g_manage_news_threshold = MAJOR;
+	$g_manage_news_threshold = MANAGER;
 
 	/**
 	 * Threshold required to delete a project
@@ -2404,7 +2404,7 @@
 	 * Threshold needed to manage user access to a project
 	 * @global int $g_project_user_threshold
 	 */
-	$g_project_user_threshold = MAJOR;
+	$g_project_user_threshold = MANAGER;
 
 	/**
 	 * Threshold needed to manage user accounts
@@ -2416,7 +2416,7 @@
 	 * Delete bug threshold
 	 * @global int $g_delete_bug_threshold
 	 */
-	$g_delete_bug_threshold = COMPLAINMGR;
+	$g_delete_bug_threshold = DEVELOPER;
 
 	/**
 	 * Delete bugnote threshold
@@ -2434,7 +2434,7 @@
 	 * Move bug threshold
 	 * @global int $g_move_bug_threshold
 	 */
-	$g_move_bug_threshold = COMPLAINMGR;
+	$g_move_bug_threshold = DEVELOPER;
 
 	/**
 	 * Threshold needed to set the view status while reporting a bug or a bug note.
@@ -2453,7 +2453,7 @@
 	 * Threshold needed to show the list of users montoring a bug on the bug view pages.
 	 * @global int $g_show_monitor_list_threshold
 	 */
-	$g_show_monitor_list_threshold = COMPLAINMGR;
+	$g_show_monitor_list_threshold = DEVELOPER;
 
 	/**
 	 * Threshold needed to be able to use stored queries
@@ -2465,20 +2465,20 @@
 	 * Threshold needed to be able to create stored queries
 	 * @global int $g_stored_query_create_threshold
 	 */
-	$g_stored_query_create_threshold = COMPLAINMGR;
+	$g_stored_query_create_threshold = DEVELOPER;
 
 	/**
 	 * Threshold needed to be able to create shared stored queries
 	 * @global int $g_stored_query_create_shared_threshold
 	 */
-	$g_stored_query_create_shared_threshold = MAJOR;
+	$g_stored_query_create_shared_threshold = MANAGER;
 
 	/**
 	 * Threshold needed to update readonly bugs.  Readonly bugs are identified via
 	 * $g_bug_readonly_status_threshold.
 	 * @global int $g_update_readonly_bug_threshold
 	 */
-	$g_update_readonly_bug_threshold = MAJOR;
+	$g_update_readonly_bug_threshold = MANAGER;
 
 	/**
 	 * threshold for viewing changelog
@@ -2496,43 +2496,43 @@
 	 * threshold for updating roadmap, target_version, etc
 	 * @global int $g_roadmap_update_threshold
 	 */
-	$g_roadmap_update_threshold = COMPLAINMGR;
+	$g_roadmap_update_threshold = DEVELOPER;
 
 	/**
 	 * status change thresholds
 	 * @global int $g_update_bug_status_threshold
 	 */
-	$g_update_bug_status_threshold = COMPLAINMGR;
+	$g_update_bug_status_threshold = DEVELOPER;
 
 	/**
 	 * access level needed to re-open bugs
 	 * @global int $g_reopen_bug_threshold
 	 */
-	$g_reopen_bug_threshold			= COMPLAINMGR;
+	$g_reopen_bug_threshold			= DEVELOPER;
 
 	/**
 	 * access level needed to assign bugs to unreleased product versions
 	 * @global int $g_report_issues_for_unreleased_versions_threshold
 	 */
-	$g_report_issues_for_unreleased_versions_threshold = COMPLAINMGR;
+	$g_report_issues_for_unreleased_versions_threshold = DEVELOPER;
 
 	/**
 	 * access level needed to set a bug sticky
 	 * @global int $g_set_bug_sticky_threshold
 	 */
-	$g_set_bug_sticky_threshold			= MAJOR;
+	$g_set_bug_sticky_threshold			= MANAGER;
 
 	/**
 	 * The minimum access level for someone to be a member of the development team
 	 * and appear on the project information page.
 	 * @global int $g_development_team_threshold
 	 */
-	$g_development_team_threshold = COMPLAINMGR;
+	$g_development_team_threshold = DEVELOPER;
 
 	/**
 	 * this array sets the access thresholds needed to enter each status listed.
 	 * if a status is not listed, it falls back to $g_update_bug_status_threshold
-	 * example: $g_set_status_threshold = array( ACKNOWLEDGED => MAJOR, CONFIRMED => COMPLAINMGR, CLOSED => MAJOR );
+	 * example: $g_set_status_threshold = array( ACKNOWLEDGED => MANAGER, CONFIRMED => DEVELOPER, CLOSED => MANAGER );
 	 * @global array $g_set_status_threshold
 	 */
 	$g_set_status_threshold = array( NEW_ => REPORTER );
@@ -2562,7 +2562,7 @@
 
 	/**
 	 * close immediately
-	 * Allow complainmgrs and above to close bugs immediately when resolving bugs
+	 * Allow developers and above to close bugs immediately when resolving bugs
 	 * @global int $g_allow_close_immediately
 	 */
 	$g_allow_close_immediately	= OFF;
@@ -2634,7 +2634,7 @@
 	/**
 	 * Account to be used by the source control script.  The account must be enabled
 	 * and must have the appropriate access level to add notes to all issues even
-	 * private ones (COMPLAINMGR access recommended).
+	 * private ones (DEVELOPER access recommended).
 	 * @global string $g_source_control_account
 	 */
 	$g_source_control_account           = '';
@@ -2773,15 +2773,7 @@
 									 'assigned'		=> '#c2dfff', // blue   (sky blue    #729fcf)
 									 'resolved'		=> '#d2f5b0', // green  (chameleon   #8ae234)
 									 'closed'		=> '#c9ccc4'); // grey  (aluminum    #babdb6)
-	/*
-	$g_status_colors		= array( 'new'			=> '#fcbdbd', // red    (scarlet red #ef2929)
-									 'feedback'		=> '#e3b7eb', // purple (plum        #75507b)
-									 'acknowledged'	=> '#ffcd85', // orange (orango      #f57900)
-									 'confirmed'	=> '#fff494', // yellow (butter      #fce94f)
-									 'assigned'		=> '#c2dfff', // blue   (sky blue    #729fcf)
-									 'resolved'		=> '#d2f5b0', // green  (chameleon   #8ae234)
-									 'closed'		=> '#c9ccc4'); // grey  (aluminum    #babdb6)
-	*/
+
 	/**
 	 * The padding level when displaying project ids
 	 *  The bug id will be padded with 0's up to the size given
@@ -2930,7 +2922,7 @@
 	 * The threshold required for users to be able to create permalinks.  To turn of this feature use NOBODY.
 	 * @global int $g_create_permalink_threshold
 	 */
-	$g_create_permalink_threshold = COMPLAINMGR;
+	$g_create_permalink_threshold = DEVELOPER;
 
 	/**
 	 * The service to use to create a short URL.  The %s will be replaced by the long URL.
@@ -3002,7 +2994,7 @@
 	 * directly use MantisBT to edit them.
 	 * @global string $g_access_levels_enum_string
 	 */
-	$g_access_levels_enum_string		= '10:viewer,25:reporter,40:updater,55:complainmgr,70:major,90:administrator';
+	$g_access_levels_enum_string		= '10:viewer,25:reporter,40:updater,55:developer,70:manager,90:administrator';
 
 	/**
 	 *
@@ -3043,9 +3035,7 @@
 	 *
 	 * @global string $g_status_enum_string
 	 */
-	 
-	//$g_status_enum_string				= '10:new,20:feedback,30:acknowledged,40:confirmed,50:assigned,80:resolved,90:closed';
-	$g_status_enum_string				= '10:new,40:confirmed,80:resolved,90:closed';
+	$g_status_enum_string				= '10:new,20:feedback,30:acknowledged,40:confirmed,50:assigned,80:resolved,90:closed';
 
 	/**
 	 * @@@ for documentation, the values in this list are also used to define variables in the language files
@@ -3218,7 +3208,7 @@
 	 * Threshold needed to link/unlink custom field to/from a project
 	 * @global int $g_custom_field_link_threshold
 	 */
-	$g_custom_field_link_threshold = MAJOR;
+	$g_custom_field_link_threshold = MANAGER;
 
 	/**
 	 * Whether to start editng a custom field immediately after creating it
@@ -3232,7 +3222,7 @@
 
 	/**
 	 * Add custom options to the main menu.  For example:
-	 * $g_main_menu_custom_options = array(	array( "My Link",  MAJOR,       'my_link.php' ),
+	 * $g_main_menu_custom_options = array(	array( "My Link",  MANAGER,       'my_link.php' ),
 	 *					array( "My Link2", ADMINISTRATOR, 'my_link2.php' ) );
 	 * Note that if the caption is found in custom_strings_inc.php, then it will be replaced by the
 	 * translated string.  Options will only be added to the menu if the current logged in user has
@@ -3391,7 +3381,7 @@
 		'reported'      => '3',
 		'resolved'      => '4',
 		'recent_mod'	=> '5',
-		'monitored'		=> '0',
+		'monitored'		=> '6',
 		'feedback'		=> '0',
 		'verify'		=> '0',
 		'my_comments'	=> '0'
@@ -3615,7 +3605,7 @@
 	 * Access level required to detach tags from a bug
 	 * @global int $g_tag_detach_threshold
 	 */
-	$g_tag_detach_threshold = COMPLAINMGR;
+	$g_tag_detach_threshold = DEVELOPER;
 
 	/**
 	 * Access level required to detach tags attached by the same user
@@ -3633,7 +3623,7 @@
 	 * Access level required to edit tag names and descriptions
 	 * @global int $g_tag_edit_threshold
 	 */
-	$g_tag_edit_threshold = COMPLAINMGR;
+	$g_tag_edit_threshold = DEVELOPER;
 
 	/**
 	 * Access level required to edit descriptions by the creating user
@@ -3667,19 +3657,19 @@
 	 * access level required to view time tracking information
 	 * @global int $g_time_tracking_view_threshold
 	 */
-	$g_time_tracking_view_threshold = COMPLAINMGR;
+	$g_time_tracking_view_threshold = DEVELOPER;
 
 	/**
 	 * access level required to add/edit time tracking information
 	 * @global int $g_time_tracking_edit_threshold
 	 */
-	$g_time_tracking_edit_threshold = COMPLAINMGR;
+	$g_time_tracking_edit_threshold = DEVELOPER;
 
 	/**
 	 * access level required to run reports
 	 * @global int $g_time_tracking_reporting_threshold
 	 */
-	$g_time_tracking_reporting_threshold = MAJOR;
+	$g_time_tracking_reporting_threshold = MANAGER;
 
 	/**
 	 * allow time tracking to be recorded without a bugnote
@@ -3707,7 +3697,7 @@
 	 * Threshold needed to be able to create and modify global profiles
 	 * @global int $g_manage_global_profile_threshold
 	 */
-	$g_manage_global_profile_threshold = MAJOR;
+	$g_manage_global_profile_threshold = MANAGER;
 
 	/**
 	 * Allows the users to enter free text when reporting/updating issues
@@ -3875,7 +3865,7 @@
 	 *  'halt' - stop and display traceback
 	 *  'inline' - display 1 line error and continue
 	 *  'none' - no error displayed
-	 * A complainmgr might set this in config_inc.php as:
+	 * A developer might set this in config_inc.php as:
 	 *	$g_display_errors = array(
 	 *		E_WARNING => 'halt',
 	 *		E_NOTICE => 'halt',
