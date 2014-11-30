@@ -775,14 +775,14 @@ function print_menu() {
 		}
 
 		# Changelog Page
-		if( access_has_project_level( config_get( 'view_changelog_threshold' ) ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'changelog_page.php">' ) . lang_get( 'changelog_link' ) . '</a>';
-		}
+		//if( access_has_project_level( config_get( 'view_changelog_threshold' ) ) ) {
+		//	$t_menu_options[] = '<a href="' . helper_mantis_url( 'changelog_page.php">' ) . lang_get( 'changelog_link' ) . '</a>';
+		//}
 
 		# Roadmap Page
-		if( access_has_project_level( config_get( 'roadmap_view_threshold' ) ) ) {
-			$t_menu_options[] = '<a href="' . helper_mantis_url( 'roadmap_page.php">' ) . lang_get( 'roadmap_link' ) . '</a>';
-		}
+		//if( access_has_project_level( config_get( 'roadmap_view_threshold' ) ) ) {
+		//	$t_menu_options[] = '<a href="' . helper_mantis_url( 'roadmap_page.php">' ) . lang_get( 'roadmap_link' ) . '</a>';
+		//}
 
 		# Summary Page
 		if( access_has_project_level( config_get( 'view_summary_threshold' ) ) ) {

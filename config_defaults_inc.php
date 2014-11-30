@@ -746,7 +746,7 @@
 	 * Check for admin directory, database upgrades, etc.
 	 * @global int $g_admin_checks
 	 */
-	$g_admin_checks			= ON;
+	$g_admin_checks			= OFF;
 
 	/**
 	 * Favicon image
