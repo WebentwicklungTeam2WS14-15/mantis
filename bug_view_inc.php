@@ -133,11 +133,11 @@
 	$tpl_show_last_updated = in_array( 'last_updated', $t_fields );
 	$tpl_last_updated = $tpl_show_last_updated ? date( config_get( 'normal_date_format' ), $tpl_bug->last_updated ) : '';
 
-	$tpl_show_tags = in_array( 'tags', $t_fields ) && access_has_global_level( config_get( 'tag_view_threshold' ) );
+	//$tpl_show_tags = in_array( 'tags', $t_fields ) && access_has_global_level( config_get( 'tag_view_threshold' ) );
 
 	$tpl_bug_overdue = bug_is_overdue( $f_bug_id );
 
-	$tpl_show_view_state = in_array( 'view_state', $t_fields );
+	//$tpl_show_view_state = in_array( 'view_state', $t_fields );
 	$tpl_bug_view_state_enum = $tpl_show_view_state ? string_display_line( get_enum_element( 'view_state', $tpl_bug->view_state ) ) : '';
 
 	$tpl_show_due_date = in_array( 'due_date', $t_fields ) && access_has_bug_level( config_get( 'due_date_view_threshold' ), $f_bug_id );
@@ -150,7 +150,7 @@
 		}
 	}
 
-	$tpl_show_reporter = in_array( 'reporter', $t_fields );
+	//$tpl_show_reporter = in_array( 'reporter', $t_fields );
 	$tpl_show_handler = in_array( 'handler', $t_fields ) && access_has_bug_level( config_get( 'view_handler_threshold' ), $f_bug_id );
 	$tpl_show_additional_information = !is_blank( $tpl_bug->additional_information ) && in_array( 'additional_info', $t_fields );
 	$tpl_show_steps_to_reproduce = !is_blank( $tpl_bug->steps_to_reproduce ) && in_array( 'steps_to_reproduce', $t_fields );
@@ -173,15 +173,15 @@
 	$tpl_can_attach_tag = $tpl_show_tags && !$tpl_force_readonly && access_has_bug_level( config_get( 'tag_attach_threshold' ), $f_bug_id );
 	$tpl_show_category = in_array( 'category_id', $t_fields );
 	$tpl_category = $tpl_show_category ? string_display_line( category_full_name( $tpl_bug->category_id ) ) : '';
-	$tpl_show_priority = in_array( 'priority', $t_fields );
+	//$tpl_show_priority = in_array( 'priority', $t_fields );
 	$tpl_priority = $tpl_show_priority ? string_display_line( get_enum_element( 'priority', $tpl_bug->priority ) ) : '';
-	$tpl_show_severity = in_array( 'severity', $t_fields );
+	//$tpl_show_severity = in_array( 'severity', $t_fields );
 	$tpl_severity = $tpl_show_severity ? string_display_line( get_enum_element( 'severity', $tpl_bug->severity ) ) : '';
-	$tpl_show_reproducibility = in_array( 'reproducibility', $t_fields );
+	//$tpl_show_reproducibility = in_array( 'reproducibility', $t_fields );
 	$tpl_reproducibility = $tpl_show_reproducibility ? string_display_line( get_enum_element( 'reproducibility', $tpl_bug->reproducibility ) ): '';
 	$tpl_show_status = in_array( 'status', $t_fields );
 	$tpl_status = $tpl_show_status ? string_display_line( get_enum_element( 'status', $tpl_bug->status ) ) : '';
-	$tpl_show_resolution = in_array( 'resolution', $t_fields );
+	//$tpl_show_resolution = in_array( 'resolution', $t_fields );
 	$tpl_resolution = $tpl_show_resolution ? string_display_line( get_enum_element( 'resolution', $tpl_bug->resolution ) ) : '';
 	$tpl_show_summary = in_array( 'summary', $t_fields );
 	$tpl_show_description = in_array( 'description', $t_fields );
@@ -288,7 +288,7 @@
 		echo '<td class="category" width="15%">', $tpl_show_id ? lang_get( 'id' ) : '', '</td>';
 		echo '<td class="category" width="20%">', $tpl_show_project ? lang_get( 'email_project' ) : '', '</td>';
 		echo '<td class="category" width="15%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
-		echo '<td class="category" width="15%">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
+	//	echo '<td class="category" width="15%">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
 		echo '<td class="category" width="15%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
 		echo '<td class="category" width="20%">', $tpl_show_last_updated ? lang_get( 'last_update' ) : '','</td>';
 		echo '</tr>';
@@ -305,7 +305,7 @@
 		echo '<td>', $tpl_category, '</td>';
 
 		# View Status
-		echo '<td>', $tpl_bug_view_state_enum, '</td>';
+	//	echo '<td>', $tpl_bug_view_state_enum, '</td>';
 
 		# Date Submitted
 		echo '<td>', $tpl_date_submitted, '</td>';
