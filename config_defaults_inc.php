@@ -2270,7 +2270,7 @@
 	 * access level needed to be able to be listed in the assign to field.
 	 * @global int $g_handle_bug_threshold
 	 */
-	$g_handle_bug_threshold			= DEVELOPER;
+	$g_handle_bug_threshold			= REPORTER;
 
 	/**
 	 * access level needed to show the Assign To: button bug_view*_page or
