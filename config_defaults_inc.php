@@ -2535,7 +2535,7 @@
 	 * example: $g_set_status_threshold = array( ACKNOWLEDGED => MAJOR, CONFIRMED => DEVELOPER, CLOSED => MAJOR );
 	 * @global array $g_set_status_threshold
 	 */
-	$g_set_status_threshold = array( NEW_ => REPORTER );
+	$g_set_status_threshold = array( NEW_ => REPORTER, CLOSED => DEVELOPER );
 
 	/**
 	 * Allow a bug to have no category
