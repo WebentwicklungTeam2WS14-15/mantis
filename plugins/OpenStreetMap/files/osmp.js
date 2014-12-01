@@ -1,7 +1,9 @@
 var osmp = new Object();
 osmp.map = undefined;
+osmp.marker_layer = undefined;
 
 // Icon to display an issue on the map
+// Copyright Map Icons Collection Creative Commons 3.0 BY-SA Author : Nicolas Mollet
 osmp.marker_icon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAlCAYAAAAjt+tHAAACnUlEQVRYhbWXu24TQR'
 + 'SGv1ksa21CiihConJewEKIIrIo0th9niFW8hZUvAUInsH9VimQlSJCiBeAKo1FEYyzspYZCs8xx85eZs36SKO9er5/zvl3vcc45'
 + 'wAYjUYtIALaftui2cgACywBmyRJBmCccwJvA7EfbS8gaghuvYAlkPqxTJIkM8PhUOBd4NBvY/aTgRRYAPd+u5RVxh7+3Dk3b'
@@ -21,7 +23,7 @@ osmp.showMap = function (lng, lat) {
   this.loadMap();
   this.setMapPosition(lng, lat);
   this.showMarker(lng, lat);
-  this.setClickHandler();
+  this.setClickPositionHandler();
 }
 
 /*
@@ -34,6 +36,7 @@ osmp.loadMap = function (){
   console.log("Map container: " + osmp_container);
   osmp.map = new ol.Map({
     target: osmp_container,
+    interactions: ol.interaction.defaults({mouseWheelZoom:false}),
     layers: [
       new ol.layer.Tile({
         source: new ol.source.MapQuest({layer: osmp_layer})
@@ -45,8 +48,17 @@ osmp.loadMap = function (){
 /*
  * Centers the map on the given position.
  */
-osmp.setMapPosition = function (lng, lat){
-  var osmp_zoom = 17;
+osmp.setMapPosition = function (lng, lat, zoom){
+  var osmp_zoom = zoom;
+  console.log("Setting map view: Lat=" + lat + ", Lng=" + lng + " zoom: " + osmp_zoom);
+  osmp.map.setView(new ol.View({
+    center: ol.proj.transform([lng, lat], 'EPSG:4326', 'EPSG:3857'),
+    zoom: osmp_zoom
+  }));
+}
+
+osmp.setMapClickPosition = function (lng, lat){
+  var osmp_zoom = osmp.map.getView().getZoom();
   console.log("Setting map view: Lat=" + lat + ", Lng=" + lng + " zoom: " + osmp_zoom);
   osmp.map.setView(new ol.View({
     center: ol.proj.transform([lng, lat], 'EPSG:4326', 'EPSG:3857'),
@@ -77,7 +89,9 @@ osmp.getCoordinates = function (address){
   link = link.replace(/\s+/g, '+'); // Replace (multiple) spaces with plus char
   console.log("Running geocoder: " + link);
   this.jsonRequest(link, function(response){
-    console.log("Retrieved coordinates" + response);
+    var lat = response.results[0].geometry.location.lat;
+    var lng = response.results[0].geometry.location.lng;
+    console.log("Retrieved coordinates " + lat + ", " + lng);
     //document.getElementById('map_coordinates_display_text').innerHTML = address;
   });
 }
@@ -95,13 +109,12 @@ osmp.showMarker = function(lng, lat){
   // Marker style
   var iconStyle = new ol.style.Style({
     image: new ol.style.Icon({
-      opacity: 0.75,
+      opacity: 0.90,
       anchor: [0.5, 46],
       anchorXUnits: 'fraction',
       anchorYUnits: 'pixels',
       graphicWidth:50,
       graphicHeight:50,
-      // Copyright Map Icons Collection Creative Commons 3.0 BY-SA Author : Nicolas Mollet
       src: osmp.marker_icon
     })
   });
@@ -112,23 +125,59 @@ osmp.showMarker = function(lng, lat){
   var vectorSource = new ol.source.Vector({
     features: [iconFeature]
   });
-
-  // Create vector layer
-  var vectorLayer = new ol.layer.Vector({
+  if(osmp.marker_layer != undefined){
+    osmp.map.removeLayer(osmp.marker_layer);
+  }
+  osmp.marker_layer = new ol.layer.Vector({
     source: vectorSource,
   });
   // Add icon layer to map
-  osmp.map.addLayer(vectorLayer);
+  osmp.map.addLayer(osmp.marker_layer);
 }
 
- osmp.setClickHandler = function (){
+
+ osmp.setClickPositionHandler = function (){
    osmp.map.on('click', function(evt) {
-     console.log("Showing registered click");
      var coordinate = evt.coordinate;
-     var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(coordinate, 'EPSG:4326', 'EPSG:3857'));
-     var position = ol.proj.transform(coordinate, 'EPSG:4326', 'EPSG:3857');
-     console.log("Clicked position: " + position);
+     // Transfor position for further use
+     var position = ol.proj.transform(coordinate, 'EPSG:3857','EPSG:4326');
+     console.log("Registered click on map. Selected position: " + position[0] + "," + position[1]);
+     osmp.setMapClickPosition(position[0],position[1]);
+     osmp.showMarker(position[0], position[1]);
+     var link = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position[1] + ',' + position[0]+ "&language=de";
+     link = link.replace(/\s+/g, '+');
+     osmp.jsonRequest(link, function (response){
+       var address = response.results[0].formatted_address;
+       document.getElementById('map_address_input').value = address;
+     });
    });
+ }
+
+ osmp.updateMapFromInput = function(){
+   var text  = document.getElementById('map_address_input').value;
+   this.getCoordinates(text);
+   console.log("text has changed " + text);
+ }
+ osmp.setGoogleAutocomplete = function(){
+   console.log("Setting autocomplete");
+   var autocomplete = new google.maps.places.Autocomplete(
+     /** @type {HTMLInputElement} */(document.getElementById('map_address_input')),
+     { types: ['geocode'] });
+     google.maps.event.addListener(autocomplete, 'place_changed', function() {
+       var place = autocomplete.getPlace();
+       var address = place.formatted_address;
+       var lat = place.geometry.location.lat();
+       var lng = place.geometry.location.lng();
+       osmp.setMapPosition(lng,lat,17);
+       osmp.showMarker(lng, lat);
+     });
+ }
+
+ osmp.catchEnter = function(event){
+   if (event.keyCode == 13){
+     console.log("Enter was pressed");
+     return false;
+   }
  }
 
 /*
