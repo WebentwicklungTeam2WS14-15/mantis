@@ -2502,7 +2502,7 @@
 	 * status change thresholds
 	 * @global int $g_update_bug_status_threshold
 	 */
-	$g_update_bug_status_threshold = DEVELOPER;
+	$g_update_bug_status_threshold = REPORTER;
 
 	/**
 	 * access level needed to re-open bugs
