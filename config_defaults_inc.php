@@ -3387,11 +3387,11 @@
 	 */
 	$g_my_view_boxes = array (
 		'assigned'      => '1',
-		'unassigned'    => '2',
-		'reported'      => '3',
-		'resolved'      => '4',
-		'recent_mod'	=> '5',
-		'monitored'		=> '0',
+		'unassigned'    => '3',
+		'reported'      => '5',
+		'resolved'      => '6',
+		'recent_mod'	=> '4',
+		'monitored'		=> '2',
 		'feedback'		=> '0',
 		'verify'		=> '0',
 		'my_comments'	=> '0'
