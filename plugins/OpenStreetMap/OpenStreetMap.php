@@ -296,7 +296,6 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$table = 'mantis_custom_field_string_table';
 		$query_read_coords =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 2';
 		$result_read_coords = db_query( $query_read_coords );
-Latitude: 51.66883576734051, Longitude: 6.956922317382792
 		$row_read_coords = db_fetch_array( $result_read_coords );
 		$geo_text = implode( "",$row_read_coords );
 		$geo_text_array = explode(" ", $geo_text );
