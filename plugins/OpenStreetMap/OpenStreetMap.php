@@ -9,7 +9,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 
 	/**
 	*  A method that populates the plugin information and minimum requirements.
-		*/
+	*/
 	function register() {
 
 		// The localization does not work somehow.
@@ -20,7 +20,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$this->description = 'Dieses Plugin erlaubt das Einfügen von Geodaten in Einträgen mit Hilfe von Leaflet und OpenStreetMap.';
 		$this->page = '';
 
-		$this->version = '0.0.1';
+		$this->version = '0.9.5';
 		$this->requires = array(
 			'MantisCore' => '1.2.0',
 		);
@@ -190,11 +190,11 @@ class OpenStreetMapPlugin extends MantisPlugin {
 	//************************************************************************************************
 
 	/**
-	* Display a collapseable map in the bug view
+	* Display a map in the bug view
 	*/
 	function show_map_in_view( $p_bug_id ){
-		$t_lat = '51.65727969659906';
-		$t_lng = '6.964556558664106';
+		$coords = $this->readGeo( $p_bug_id );
+		$address = $this->readAddress( $p_bug_id );
 
 		echo '<a name="mapview" id="mapview" /><br />'
 				.'<div id="mapview_open">'
@@ -203,16 +203,14 @@ class OpenStreetMapPlugin extends MantisPlugin {
 							.'<td class="center" colspan="2">'
 								.'<div id="map_address_display">'
 									.'<div id="map_address_display_text">'
-										.'<script type="text/javascript">'
-											.'osmp.getAddress('.$t_lng.','.$t_lat.');'
-										.'</script>'
+									.$address
 									.'</div>'
 								.'</div>'
 								.'<div id="osmp_map"></div>'
 								.'<script type="text/javascript">'
 									.'osmp.loadMap();'
-									.'osmp.setMapPosition('.$t_lng.','.$t_lat.',17);'
-									.'osmp.showMarker('.$t_lng.','.$t_lat.');'
+									.'osmp.setMapPosition('.$coords['lng'].','.$coords['lat'].',17);'
+									.'osmp.clearAndSetMarker('.$coords['lng'].','.$coords['lat'].');'
 								.'</script>'
 							.'</td>'
 						.'</tr>'
@@ -224,21 +222,21 @@ class OpenStreetMapPlugin extends MantisPlugin {
 	* Display a map in the bug update form
 	*/
 	function show_map_update_form( $p_bug_id ){
-		$t_lat = '51.65727969659906';
-		$t_lng = '6.964556558664106';
-		$t_zoom = '17';
+		$coords = $this->readGeo( $p_bug_id );
+		$address = $this->readAddress( $p_bug_id );
 
 		echo '<tr class="row-1">'
 					.'<td class="category">'
 						.'Ortsdaten setzen'
 					.'</td>'
 					.'<td colspan="5">'
-						.'<input id="map_address_input" type="text" name="address" size="105" maxlength="128" value="">'
+						.'<input id="map_address_input" type="text" name="address" size="105" maxlength="128" value="'.$address.'">'
 						.'<div id="osmp_map"></div>'
 						.'<script type="text/javascript">'
 						.'osmp.loadMap();'
-						.'osmp.setMapPosition('.$t_lng.','.$t_lat.','.$t_zoom.');'
-						.'osmp.setClickPositionHandler();'
+						.'osmp.clearAndSetMarker('.$coords['lng'].','.$coords['lat'].');'
+						.'osmp.setPositionClickHandler();'
+						.'osmp.setGoogleAutocomplete();'
 						.'</script>'
 					.'</td>'
 				.'</tr>';
@@ -249,9 +247,10 @@ class OpenStreetMapPlugin extends MantisPlugin {
 	*/
 	function show_map_report_form( $p_project_id ){
 		// Default position to center the map at the beginning
-		$t_lat = '51.65997382185341';
-		$t_lng = '6.970621633869327';
-		$t_zoom = '13';
+		// Dorsten (Germany)
+		$lat = '51.65997382185341';
+		$lng = '6.970621633869327';
+		$zoom = '13';
 
 		echo '<tr class="row-1">'
 					.'<td class="category">'
@@ -262,12 +261,83 @@ class OpenStreetMapPlugin extends MantisPlugin {
 						.'<div id="osmp_map"></div>'
 						.'<script type="text/javascript">'
 						.'osmp.loadMap();'
-						.'osmp.setMapPosition('.$t_lng.','.$t_lat.','.$t_zoom.');'
-						.'osmp.setClickPositionHandler();'
+						.'osmp.setMapPosition('.$lng.','.$lat.','.$zoom.');'
+						.'osmp.setPositionClickHandler();'
 						.'osmp.setGoogleAutocomplete();'
 						.'</script>'
 					.'</td>'
 				.'</tr>';
+	}
+
+	//************************************************************************************************
+	//																		DATABASE OPERATION
+	//************************************************************************************************
+
+
+	/**
+	* Read address from database
+	* Return: Address
+	*/
+	function readAddress( $p_bug_id ){
+		$table = 'mantis_custom_field_string_table';
+		$query_read_address =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 6';
+		$result_read_address = db_query( $query_read_address );
+		$row_read_address = db_fetch_array( $result_read_address );
+		//$address = $row_read_address['value'];
+		$address = implode("",$row_read_address);
+		return $address;
+	}
+
+	/**
+	* Read geodata from database
+	* Return: <Array> Array of coordinates
+	*/
+	function readGeo( $p_bug_id ){
+		$table = 'mantis_custom_field_string_table';
+		$query_read_coords =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 2';
+		$result_read_coords = db_query( $query_read_coords );
+Latitude: 51.66883576734051, Longitude: 6.956922317382792
+		$row_read_coords = db_fetch_array( $result_read_coords );
+		$geo_text = implode( "",$row_read_coords );
+		$geo_text_array = explode(" ", $geo_text );
+		$lat = $geo_text_array[1];
+		$lng = $geo_text_array[3];
+		return array(
+			'lat' => $lat,
+			'lng' => $lng
+		);
+	}
+
+	/**
+	* Update address in database
+	*/
+	function updateAddress( $p_bug_id, $p_address ){
+		$query_update_address =  'UPDATE mantis_bug_text_table SET description='.$p_address.' WHERE id = '.$p_bug_id;
+		$result_update_address = db_query( $query_update_address );
+	}
+
+	/**
+	* Update geodata in database
+	*/
+	function updateGeo( $p_bug_id, $lat, $lng ){
+		$query_update_coords =  'UPDATE mantis_bug_text_table SET description='.$lat.','.$lng.' WHERE id = '.$p_bug_id;
+		$result_update_coords = db_query( $query_update_coords );
+	}
+
+	/**
+	* Insert new address into database
+	*/
+	function writeAddress ( $p_project_id, $p_address ){
+		$query_write_address =  'INSERT INTO mantis_bug_text_table (description) VALUES ('.$p_address.')';
+		$result_write_address = db_query( $query_write_address );
+	}
+
+	/**
+	* Insert new geodata into database
+	*/
+	function writeGeo ( $p_project_id, $lat, $lng ){
+		$query_write_coords =  'INSERT INTO mantis_bug_text_table (description) VALUES ('.$lat.','.$lng.')';
+		$result_write_coords = db_query( $query_write_coords );
 	}
 
 } // Close class
