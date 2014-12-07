@@ -297,10 +297,10 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$query_read_coords =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 2';
 		$result_read_coords = db_query( $query_read_coords );
 		$row_read_coords = db_fetch_array( $result_read_coords );
-		$geo_text = implode( "",$row_read_coords );
+		$geo_text = implode( "", $row_read_coords );
 		$geo_text_array = explode(" ", $geo_text );
 		$lat = $geo_text_array[1];
-		$lng = $geo_text_array[3];
+		$lng = str_replace(",","",$geo_text_array[3]);
 		return array(
 			'lat' => $lat,
 			'lng' => $lng
