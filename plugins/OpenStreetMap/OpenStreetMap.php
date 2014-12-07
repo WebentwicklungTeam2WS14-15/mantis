@@ -283,8 +283,8 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$query_read_address =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 6';
 		$result_read_address = db_query( $query_read_address );
 		$row_read_address = db_fetch_array( $result_read_address );
-		//$address = $row_read_address['value'];
-		$address = implode("",$row_read_address);
+		$address = $row_read_address['value'];
+		//$address = implode("",$row_read_address);
 		return $address;
 	}
 
@@ -299,7 +299,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$row_read_coords = db_fetch_array( $result_read_coords );
 		$geo_text = implode( "", $row_read_coords );
 		$geo_text_array = explode(" ", $geo_text );
-		$lat = $geo_text_array[1];
+		$lat = str_replace(",","",$geo_text_array[1]);
 		$lng = str_replace(",","",$geo_text_array[3]);
 		return array(
 			'lat' => $lat,
