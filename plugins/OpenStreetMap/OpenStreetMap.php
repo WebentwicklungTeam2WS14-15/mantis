@@ -133,16 +133,16 @@ class OpenStreetMapPlugin extends MantisPlugin {
 	* known, and is passed as a second parameter.
 	*
 	* Parameters: <Complex> Bug data structure (see core/bug_api.php)
-	*							<Integer> Bug ID
+	*
 	*
 	*/
-	function event_report_bug( $p_event, $p_bug_id, $p_bug_data_structure){
+	function event_report_bug( $p_event, $p_bug_data_structure){
+		$bug_id = $p_bug_data_structure ->id;
 		$address = $_POST['hiddenaddress'];
 		$lat = $_POST['newlatitude'];
 		$lng = $_POST['newlongitude'];
-		//echo '<script>console.log("'.$p_bug_id.'_'.$address.'_'.$lng.'")</script>';
-		//$this->updateAddress( $p_bug_id, $address );
-		//$this->updateGeo( $p_bug_id, $lat, $lng );
+		$this->writeAddress( $bug_id, $address );
+		$this->writeGeo( $bug_id, $lat, $lng );
 	}
 
 	/**
@@ -243,6 +243,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 						.'<input id="map_address_input" type="text" name="address" size="105" maxlength="128" value="'.$address.'">'
 						.'<input type="hidden" id="hidden_input_latitude" name="newlatitude" value=""/>'
 						.'<input type="hidden" id="hidden_input_longitude" name="newlongitude" value=""/>'
+						.'<input type="hidden" id="hidden_input_address" name="hiddenaddress" value="">'
 						.'<div id="osmp_map"></div>'
 						.'<script type="text/javascript">'
 						.'osmp.loadMap();'
@@ -294,7 +295,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 	*/
 	function readAddress( $p_bug_id ){
 		$table = 'mantis_custom_field_string_table';
-		$query_read_address =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 6';
+		$query_read_address =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 3';
 		$result_read_address = db_query( $query_read_address );
 		$row_read_address = db_fetch_array( $result_read_address );
 		$address = $row_read_address['value'];
@@ -311,7 +312,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$query_read_coords =  'SELECT value FROM '.$table.' WHERE bug_id = '.$p_bug_id.' AND field_id = 2';
 		$result_read_coords = db_query( $query_read_coords );
 		$row_read_coords = db_fetch_array( $result_read_coords );
-		$geo_text = implode( "", $row_read_coords );
+		$geo_text = $row_read_coords['value'];
 		$geo_text_array = explode(" ", $geo_text );
 		$lat = str_replace(",","",$geo_text_array[1]);
 		$lng = str_replace(",","",$geo_text_array[3]);
@@ -326,7 +327,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 	*/
 	function updateAddress( $p_bug_id, $p_address ){
 		$table = 'mantis_custom_field_string_table';
-		$query_update_address =  'UPDATE '.$table.' SET value="'.$p_address.'" WHERE bug_id = '.$p_bug_id.' AND field_id = 6';
+		$query_update_address =  'UPDATE '.$table.' SET value="'.$p_address.'" WHERE bug_id = '.$p_bug_id.' AND field_id = 3';
 		$result_update_address = db_query( $query_update_address );
 	}
 
@@ -347,18 +348,19 @@ class OpenStreetMapPlugin extends MantisPlugin {
 	/**
 	* Insert new address into database
 	*/
-	function writeAddress ( $p_project_id, $p_address ){
+	function writeAddress ( $p_bug_id, $p_address ){
 		$table = 'mantis_custom_field_string_table';
-		$query_write_address =  'INSERT INTO mantis_bug_text_table (description) VALUES ('.$p_address.')';
+		$query_write_address =  'INSERT INTO '.$table.' (field_id, bug_id, value) VALUES (3, '.$p_bug_id.', "'.$p_address.'")';
 		$result_write_address = db_query( $query_write_address );
 	}
 
 	/**
 	* Insert new geodata into database
 	*/
-	function writeGeo ( $p_project_id, $lat, $lng ){
+	function writeGeo ( $p_bug_id, $lat, $lng ){
 		$table = 'mantis_custom_field_string_table';
-		$query_write_coords =  'INSERT INTO mantis_bug_text_table (description) VALUES ('.$lat.','.$lng.')';
+		$geo_text = 'Latitude: '.$lat.', Longitude: '.$lng;
+		$query_write_coords =  'INSERT INTO '.$table.' (field_id, bug_id, value) VALUES (2, '.$p_bug_id.', "'.$geo_text.'")';
 		$result_write_coords = db_query( $query_write_coords );
 	}
 
