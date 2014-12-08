@@ -145,6 +145,18 @@
 		<table class="width100" cellspacing="1">
 		<tr>
 			<td class="form-title" colspan="1">
+				<?php echo lang_get( 'by_severity' ) ?>
+			</td>
+			<?php echo $t_orcttab ?>
+		</tr>
+		<?php summary_print_by_enum( 'severity' ) ?>
+		</table>
+
+		<br />
+
+		<table class="width100" cellspacing="1">
+		<tr>
+			<td class="form-title" colspan="1">
 				<?php echo lang_get( 'by_category' ) ?>
 			</td>
 			<?php echo $t_orcttab ?>
@@ -257,6 +269,20 @@
 		</table>
 
 		<br />
+
+		/*
+		<table class="width100" cellspacing="1">
+		<tr>
+			<td class="form-title" colspan="1">
+				<?php echo lang_get( 'by_priority' ) ?>
+			</td>
+			<?php echo $t_orcttab ?>
+		</tr>
+		<?php summary_print_by_enum( 'priority' ) ?>
+		</table>
+
+		<br />
+		*/
 		
 		<table class="width100" cellspacing="1">
 		<tr>
@@ -268,9 +294,74 @@
 		<?php summary_print_by_reporter() ?>
 		</table>
 
+		<br />
+
+		/*
+		<table class="width100" cellspacing="1">
+		<tr>
+			<td class="form-title" colspan="1">
+				<?php echo lang_get( 'reporter_effectiveness' ) ?>
+			</td>
+			<td>
+				<?php echo lang_get( 'severity' ) ?>
+			</td>
+			<td>
+				<?php echo lang_get( 'errors' ) ?>
+			</td>
+			<td>
+				<?php echo lang_get( 'total' ) ?>
+			</td>
+		</tr>
+		<?php summary_print_reporter_effectiveness( config_get( 'severity_enum_string' ), config_get( 'resolution_enum_string' ) ) ?>
+		</table>
+		*/
 	</td>
 </tr>
 
+<tr valign="top">
+	<td colspan="2">
+		<table class="width100" cellspacing="1">
+		<tr>
+			<td class="form-title" colspan="1">
+				<?php echo lang_get( 'reporter_by_resolution' ) ?>
+			</td>
+			<?php
+			$t_resolutions = MantisEnum::getValues( config_get( 'resolution_enum_string' ) );
+
+			foreach ( $t_resolutions as $t_resolution ) {
+				echo '<td>', get_enum_element( 'resolution', $t_resolution ), '</td>';
+			}
+
+			echo '<td>', lang_get( 'percentage_errors' ), '</td>';
+			?>
+		</tr>
+		<?php summary_print_reporter_resolution( config_get( 'resolution_enum_string' ) ) ?>
+		</table>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td colspan="2">
+		<table class="width100" cellspacing="1">
+		<tr>
+			<td class="form-title" colspan="1">
+				<?php echo lang_get( 'developer_by_resolution' ) ?>
+			</td>
+			<?php
+			$t_resolutions = MantisEnum::getValues( config_get( 'resolution_enum_string' ) );
+
+			foreach ( $t_resolutions as $t_resolution ) {
+				echo '<td>', get_enum_element( 'resolution', $t_resolution ), '</td>';
+			}
+
+			echo '<td>', lang_get( 'percentage_fixed' ), '</td>';
+			?>
+		</tr>
+		<?php summary_print_developer_resolution( config_get( 'resolution_enum_string' ) ) ?>
+		</table>
+	</td>
+</tr>
+</table>
 
 <?php
 	html_page_bottom();
