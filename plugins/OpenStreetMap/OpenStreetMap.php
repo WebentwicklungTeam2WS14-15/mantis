@@ -353,7 +353,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$query_write_address =  'INSERT INTO '.$table
 			.' (field_id, bug_id, value)'
 			.' VALUES (3, '.$p_bug_id.', "'.$p_address.'")'
-			.' ON DUPLICATE KEY UPDATE value "'.$p_address.'"';
+			.' ON DUPLICATE KEY UPDATE value = "'.$p_address.'"';
 		$result_write_address = db_query( $query_write_address );
 	}
 
@@ -366,7 +366,7 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$query_write_coords =  'INSERT INTO '.$table
 		.' (field_id, bug_id, value)'
 		.' VALUES (2, '.$p_bug_id.', "'.$geo_text.'")'
-		.' ON DUPLICATE KEY UPDATE value "'.$geo_text.'"';
+		.' ON DUPLICATE KEY UPDATE value = "'.$geo_text.'"';
 		$result_write_coords = db_query( $query_write_coords );
 	}
 
