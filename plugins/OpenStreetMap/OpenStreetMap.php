@@ -141,8 +141,8 @@ class OpenStreetMapPlugin extends MantisPlugin {
 		$lat = $_POST['newlatitude'];
 		$lng = $_POST['newlongitude'];
 		//echo '<script>console.log("'.$p_bug_id.'_'.$address.'_'.$lng.'")</script>';
-		$this->updateAddress( $p_bug_id, $address );
-		$this->updateGeo( $p_bug_id, $lat, $lng );
+		//$this->updateAddress( $p_bug_id, $address );
+		//$this->updateGeo( $p_bug_id, $lat, $lng );
 	}
 
 	/**
