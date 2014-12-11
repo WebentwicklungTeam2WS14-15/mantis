@@ -590,7 +590,7 @@ function category_get_field( $p_category_id, $p_field_name ) {
  * @return string category full name
  * @access public
  */
-function category_full_name( $p_category_id, $p_show_project = true, $p_current_project = null ) {
+function category_full_name( $p_category_id, $p_show_project = false, $p_current_project = null ) {
 	if( 0 == $p_category_id ) {
 		# No Category
 		return lang_get( 'no_category' );
