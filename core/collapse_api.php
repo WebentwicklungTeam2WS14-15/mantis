@@ -56,7 +56,7 @@ $g_current_collapse_section = null;
  *
  * @global bool $g_open_collapse_section
  */
-$g_open_collapse_section = false;
+$g_open_collapse_section = true;
 
 /**
  *
