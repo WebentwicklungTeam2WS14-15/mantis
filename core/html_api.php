@@ -506,7 +506,7 @@ function html_login_info() {
 			echo ' | <a href="' . helper_mantis_url( 'signup_page.php' ) . '">' . lang_get( 'signup_link' ) . '</a>';
 		}
 	} else {
-		echo lang_get( 'logged_in_as' ), ": <span class=\"italic\">", string_html_specialchars( $t_username ), "</span> <span class=\"small\">";
+		echo lang_get( 'logged_in_as' ), ": <span class=\"italic\">", string_html_specialchars( $t_realname ), "</span> <span class=\"small\">";
 		//echo is_blank( $t_realname ) ? "($t_access_level)" : "(" . string_html_specialchars( $t_realname ) . " - $t_access_level)";
 		echo "</span>";
 	}
