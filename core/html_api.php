@@ -1722,12 +1722,6 @@ function html_buttons_view_bug_page( $p_bug_id ) {
 		echo '</td>';
 	}
 
-	# CLONE button
-	if( !$t_readonly ) {
-		echo '<td class="center">';
-		html_button_bug_create_child( $p_bug_id );
-		echo '</td>';
-	}
 
 	# REOPEN button
 	echo '<td class="center">';
@@ -1739,11 +1733,6 @@ function html_buttons_view_bug_page( $p_bug_id ) {
 	html_button_bug_close( $t_bug );
 	echo '</td>';
 
-
-	# MOVE button
-	echo '<td class="center">';
-	html_button_bug_move( $p_bug_id );
-	echo '</td>';
 
 	# DELETE button
 	echo '<td class="center">';
