@@ -204,10 +204,10 @@ osmp.setPositionClickHandler = function (){
 /*
  * Activates Google autocomplete for the 'map_address_input' text input.
  */
-osmp.setGoogleAutocomplete = function(){
+osmp.setGoogleAutocomplete = function(element){
    console.log("Setting autocomplete");
    var autocomplete = new google.maps.places.Autocomplete(
-		(document.getElementById('map_address_input')),
+		element,
 		{ types: ['geocode'] });
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
 		var place = autocomplete.getPlace();
@@ -221,6 +221,11 @@ osmp.setGoogleAutocomplete = function(){
 		osmp.setMapPosition(lng,lat,17);
 		osmp.clearAndSetMarker(lng, lat);
 	});
+};
+
+osmp.setAutocompleteInputElements = function(){
+	osmp.setGoogleAutocomplete(document.getElementById('map_address_input'));
+	osmp.setGoogleAutocomplete(document.getElementsByName("custom_field_3")[0]);
 };
 
 /*
