@@ -217,7 +217,7 @@ osmp.setGoogleAutocomplete = function(element){
 		document.getElementById('hidden_input_latitude').value = lat;
 		document.getElementById('hidden_input_longitude').value = lng;
 		document.getElementById('hidden_input_address').value = address;
-		document.getElementsByName("custom_field_3")[0].value = address;
+		document.getElementsByName('custom_field_3')[0].value = address;
 		osmp.setMapPosition(lng,lat,17);
 		osmp.clearAndSetMarker(lng, lat);
 	});
@@ -225,7 +225,7 @@ osmp.setGoogleAutocomplete = function(element){
 
 osmp.setAutocompleteInputElements = function(){
 	osmp.setGoogleAutocomplete(document.getElementById('map_address_input'));
-	osmp.setGoogleAutocomplete(document.getElementsByName("custom_field_3")[0]);
+	//osmp.setGoogleAutocomplete(document.getElementsByName('custom_field_3')[0]);
 };
 
 /*
