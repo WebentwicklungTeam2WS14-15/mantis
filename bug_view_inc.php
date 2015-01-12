@@ -66,6 +66,8 @@
 		print_recently_visited();
 	}
 
+	if (access_assigned_bug( $tpl_bug )){
+	
 	$t_action_button_position = config_get( 'action_button_position' );
 
 	$t_bugslist = gpc_get_cookie( config_get( 'bug_list_cookie' ), false );
@@ -738,7 +740,10 @@
 	if ( $tpl_show_history ) {
 		include( $tpl_mantis_dir . 'history_inc.php' );
 	}
-
+}
+	else{
+		access_denied();
+	}
 	html_page_bottom();
 
 	last_visited_issue( $tpl_bug_id );
