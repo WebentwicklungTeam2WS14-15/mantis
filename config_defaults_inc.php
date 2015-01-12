@@ -1954,7 +1954,7 @@
 	 * then it should be set to 0.
 	 * @global int $g_preview_max_height
 	 */
-	$g_preview_max_height = 250;
+	$g_preview_max_height = 9999;
 
 	/**
 	 * access level needed to view bugs attachments.  View means to see the file names
