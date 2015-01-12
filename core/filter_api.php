@@ -51,6 +51,8 @@ require_once( 'tag_api.php' );
  */
 require_once( $g_absolute_path . 'config_filter_defaults_inc.php' );
 
+require_once( 'access_api.php' );
+
 /**
  * Allow plugins to define a set of class-based filters, and register/load
  * them here to be used by the rest of filter_api.
@@ -1312,7 +1314,12 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	}
 
 	# handler
-	if( !filter_field_is_any( $t_filter[FILTER_PROPERTY_HANDLER_ID] ) ) {
+	$user_level = access_cache_matrix_user($c_user_id)[1];
+	//NUR DIE TICKETS DIE ZUGEWIESEN WURDEN ANZEIGEN
+	
+	
+	
+	if( $user_level < DEVELOPER ) {
 		$t_clauses = array();
 
 		foreach( $t_filter[FILTER_PROPERTY_HANDLER_ID] as $t_filter_member ) {
@@ -1331,7 +1338,7 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 		if( 1 < count( $t_clauses ) ) {
 			$t_handler_query = "( $t_bug_table.handler_id in (" . implode( ', ', $t_clauses ) . ") )";
 		} else {
-			$t_handler_query = "( $t_bug_table.handler_id=$t_clauses[0] )";
+			$t_handler_query = "( $t_bug_table.handler_id=$c_user_id )";
 		}
 
 		log_event( LOG_FILTERING, 'handler query = ' . $t_handler_query );
