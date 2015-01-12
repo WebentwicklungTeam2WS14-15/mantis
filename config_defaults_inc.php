@@ -1947,14 +1947,14 @@
 	 * then it should be set to 0.
 	 * @global int $g_preview_max_width
 	 */
-	$g_preview_max_width = 0;
+	$g_preview_max_width = 80;
 
 	/**
 	 * Specifies the maximum height for the auto-preview feature.  If no maximum height should be imposed
 	 * then it should be set to 0.
 	 * @global int $g_preview_max_height
 	 */
-	$g_preview_max_height = 9999;
+	$g_preview_max_height = 0;
 
 	/**
 	 * access level needed to view bugs attachments.  View means to see the file names

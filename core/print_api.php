@@ -1767,7 +1767,7 @@ document.getElementById( span ).style.display = displayType;
 				$t_preview_style = 'border: 0;';
 				$t_max_width = config_get( 'preview_max_width' );
 				if( $t_max_width > 0 ) {
-					$t_preview_style .= ' max-width:' . $t_max_width . 'px;';
+					$t_preview_style .= ' width:' . $t_max_width . '%;';
 				}
 
 				$t_max_height = config_get( 'preview_max_height' );
