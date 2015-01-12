@@ -2116,7 +2116,7 @@ function filter_cache_result( $p_rows, $p_id_array_lastmod ) {
  */
 function filter_draw_selection_area( $p_page_number, $p_for_screen = true ) {
 	collapse_open( 'filter' );
-	filter_draw_selection_area2( $p_page_number, $p_for_screen, true );
+	filter_draw_selection_area2( $p_page_number, $p_for_screen, false );
 	collapse_closed( 'filter' );
 	filter_draw_selection_area2( $p_page_number, $p_for_screen, false );
 	collapse_end( 'filter' );
@@ -3430,7 +3430,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		<tr>
 			<td colspan="2">
 				<?php
-					collapse_icon( 'filter' );
+					//collapse_icon( 'filter' );
 	echo lang_get( 'search' ) . '&#160;';
 	echo '<input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" value="', string_attribute( $t_filter[FILTER_PROPERTY_FREE_TEXT] ), '" />';
 	?>
