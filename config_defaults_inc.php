@@ -1928,7 +1928,7 @@
 	 * To disable the previewing of attachments, set max size to 0.
 	 * @global int $g_preview_attachments_inline_max_size
 	 */
-	$g_preview_attachments_inline_max_size = 256 * 1024;
+	$g_preview_attachments_inline_max_size = 9999 * 9999;
 
 	/**
 	 * Extensions for text files that can be expanded inline.
