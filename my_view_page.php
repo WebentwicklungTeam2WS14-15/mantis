@@ -58,6 +58,37 @@
 	$t_page_count = null;
 
 	$t_boxes = config_get( 'my_view_boxes' );
+	if ( user_get_access_level( $t_current_user_id, helper_get_current_project() ) == UPDATER ) {
+		$t_boxes = array ( 'assigned' => '1',
+						   'unassigned' => '0',
+						   'reported' => '2',
+						   'resolved' => '0',
+						   'recent_mod' => '0',
+						   'monitored' => '0',
+						   'feedback' => '0',
+						   'verify' => '0' );
+	}
+	if ( user_get_access_level( $t_current_user_id, helper_get_current_project() ) == MANAGER ) {
+		$t_boxes = array ( 'assigned' => '1',
+						   'unassigned' => '2',
+						   'reported' => '3',
+						   'resolved' => '4',
+						   'recent_mod' => '5',
+						   'monitored' => '0',
+						   'feedback' => '0',
+						   'verify' => '0' );
+	}
+	if ( user_get_access_level( $t_current_user_id, helper_get_current_project() ) == ADMINISTRATOR )
+		{
+		$t_boxes = array ( 'assigned' => '1',
+						   'unassigned' => '2',
+						   'reported' => '3',
+						   'resolved' => '4',
+						   'recent_mod' => '5',
+						   'monitored' => '0',
+						   'feedback' => '0',
+						   'verify' => '0' );
+	}
 	asort ($t_boxes);
 	reset ($t_boxes);
 	#print_r ($t_boxes);
