@@ -146,7 +146,7 @@
 	//$tpl_show_reproducibility = in_array( 'reproducibility', $t_fields );
 	//$tpl_show_eta = in_array( 'eta', $t_fields );
 	//$tpl_show_severity = in_array( 'severity', $t_fields );
-	$tpl_show_priority = in_array( 'priority', $t_fields );
+	//$tpl_show_priority = in_array( 'priority', $t_fields );
 	//$tpl_show_steps_to_reproduce = in_array( 'steps_to_reproduce', $t_fields );
 	$tpl_show_handler = in_array( 'handler', $t_fields ) && access_has_project_level( config_get( 'update_bug_assign_threshold' ) );
 	$tpl_show_profiles = config_get( 'enable_profiles' );
