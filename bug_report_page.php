@@ -13,7 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
-
+#
+# Modified by Patrick Dehnel and Marco Horak
+# Hochschule Rhein-Waal 2014/2015
+#
 	/**
 	 * This file POSTs data to report_bug.php
 	 *

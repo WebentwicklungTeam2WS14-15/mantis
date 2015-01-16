@@ -13,7 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
-
+#
+# Modified by Patrick Dehnel and Marco Horak
+# Hochschule Rhein-Waal 2014/2015
+#
 	/**
 	 * This include file prints out the bug information
 	 * $f_bug_id MUST be specified before the file is included
