@@ -1,4 +1,9 @@
 <?php
+	#
+	# Modified by Patrick Dehnel and Marco Horak
+	# Hochschule Rhein-Waal 2014/2015
+	#
+	
 	$g_hostname = 'localhost';
 	$g_db_type = 'mysql';
 	$g_database_name = 'mantis';
