@@ -250,7 +250,7 @@
 	 * @see $g_send_reset_password
 	 * @global int $g_allow_signup
 	 */
-	$g_allow_signup			= OFF;
+	$g_allow_signup			= ON;
 
 	/**
 	 * Max. attempts to login using a wrong password before lock the account.
@@ -400,7 +400,7 @@
 	 * $g_notify_flags['new']['threshold_min'] = DEVELOPER;
 	 * $g_notify_flags['new']['threshold_max'] = DEVELOPER;
 	 *
-	 * You might want to do something similar so all majors are notified when a
+	 * You might want to do something similar so all managers are notified when a
 	 * bug is closed.  If you didn't want reporters to be notified when a bug is
 	 * closed (only when it is resolved) you would use:
 	 *
@@ -746,7 +746,7 @@
 	 * Check for admin directory, database upgrades, etc.
 	 * @global int $g_admin_checks
 	 */
-	$g_admin_checks			= OFF;
+	$g_admin_checks			= ON;
 
 	/**
 	 * Favicon image
@@ -1402,7 +1402,7 @@
 	 * threshold for viewing summary
 	 * @global int $g_view_summary_threshold
 	 */
-	$g_view_summary_threshold	= MAJOR;
+	$g_view_summary_threshold	= MANAGER;
 
 	/**
 	 * Define the multipliers which are used to determine the effectiveness
@@ -1540,7 +1540,7 @@
 	 * greater or equal to 'handle_sponsored_bugs_threshold'.
 	 * @global int $g_assign_sponsored_bugs_threshold
 	 */
-	$g_assign_sponsored_bugs_threshold = MAJOR;
+	$g_assign_sponsored_bugs_threshold = MANAGER;
 
 	/**
 	 * Minimum sponsorship amount. If the user enters a value less than this, an error will be prompted.
@@ -1928,7 +1928,7 @@
 	 * To disable the previewing of attachments, set max size to 0.
 	 * @global int $g_preview_attachments_inline_max_size
 	 */
-	$g_preview_attachments_inline_max_size = 9999 * 9999;
+	$g_preview_attachments_inline_max_size = 256 * 1024;
 
 	/**
 	 * Extensions for text files that can be expanded inline.
@@ -1947,14 +1947,14 @@
 	 * then it should be set to 0.
 	 * @global int $g_preview_max_width
 	 */
-	$g_preview_max_width = 80;
+	$g_preview_max_width = 0;
 
 	/**
 	 * Specifies the maximum height for the auto-preview feature.  If no maximum height should be imposed
 	 * then it should be set to 0.
 	 * @global int $g_preview_max_height
 	 */
-	$g_preview_max_height = 0;
+	$g_preview_max_height = 250;
 
 	/**
 	 * access level needed to view bugs attachments.  View means to see the file names
@@ -2270,7 +2270,7 @@
 	 * access level needed to be able to be listed in the assign to field.
 	 * @global int $g_handle_bug_threshold
 	 */
-	$g_handle_bug_threshold			= REPORTER;
+	$g_handle_bug_threshold			= DEVELOPER;
 
 	/**
 	 * access level needed to show the Assign To: button bug_view*_page or
@@ -2313,7 +2313,7 @@
 	 * Access lever required to drop bug history revisions
 	 * @global int $g_bug_revision_drop_threshold
 	 */
-	$g_bug_revision_drop_threshold = MAJOR;
+	$g_bug_revision_drop_threshold = MANAGER;
 
 	/**
 	 * access level needed to upload files to the project documentation section
@@ -2321,7 +2321,7 @@
 	 * See also: $g_upload_bug_file_threshold, $g_allow_file_upload
 	 * @global int $g_upload_project_file_threshold
 	 */
-	$g_upload_project_file_threshold = MAJOR;
+	$g_upload_project_file_threshold = MANAGER;
 
 	/**
 	 * access level needed to upload files to attach to a bug
@@ -2353,10 +2353,10 @@
 	$g_view_proj_doc_threshold = ANYBODY;
 
 	/**
-	 * Site major
+	 * Site manager
 	 * @global int $g_manage_site_threshold
 	 */
-	$g_manage_site_threshold = MAJOR;
+	$g_manage_site_threshold = MANAGER;
 
 	/**
 	 * Threshold at which a user is considered to be a site administrator.
@@ -2374,13 +2374,13 @@
 	 * details (not to add/delete projects) ...etc.
 	 * @global int $g_manage_project_threshold
 	 */
-	$g_manage_project_threshold = MAJOR;
+	$g_manage_project_threshold = MANAGER;
 
 	/**
 	 * Threshold needed to add/delete/modify news
 	 * @global int $g_manage_news_threshold
 	 */
-	$g_manage_news_threshold = MAJOR;
+	$g_manage_news_threshold = MANAGER;
 
 	/**
 	 * Threshold required to delete a project
@@ -2404,7 +2404,7 @@
 	 * Threshold needed to manage user access to a project
 	 * @global int $g_project_user_threshold
 	 */
-	$g_project_user_threshold = MAJOR;
+	$g_project_user_threshold = MANAGER;
 
 	/**
 	 * Threshold needed to manage user accounts
@@ -2471,14 +2471,14 @@
 	 * Threshold needed to be able to create shared stored queries
 	 * @global int $g_stored_query_create_shared_threshold
 	 */
-	$g_stored_query_create_shared_threshold = MAJOR;
+	$g_stored_query_create_shared_threshold = MANAGER;
 
 	/**
 	 * Threshold needed to update readonly bugs.  Readonly bugs are identified via
 	 * $g_bug_readonly_status_threshold.
 	 * @global int $g_update_readonly_bug_threshold
 	 */
-	$g_update_readonly_bug_threshold = MAJOR;
+	$g_update_readonly_bug_threshold = MANAGER;
 
 	/**
 	 * threshold for viewing changelog
@@ -2502,7 +2502,7 @@
 	 * status change thresholds
 	 * @global int $g_update_bug_status_threshold
 	 */
-	$g_update_bug_status_threshold = REPORTER;
+	$g_update_bug_status_threshold = DEVELOPER;
 
 	/**
 	 * access level needed to re-open bugs
@@ -2520,7 +2520,7 @@
 	 * access level needed to set a bug sticky
 	 * @global int $g_set_bug_sticky_threshold
 	 */
-	$g_set_bug_sticky_threshold			= MAJOR;
+	$g_set_bug_sticky_threshold			= MANAGER;
 
 	/**
 	 * The minimum access level for someone to be a member of the development team
@@ -2532,10 +2532,10 @@
 	/**
 	 * this array sets the access thresholds needed to enter each status listed.
 	 * if a status is not listed, it falls back to $g_update_bug_status_threshold
-	 * example: $g_set_status_threshold = array( ACKNOWLEDGED => MAJOR, CONFIRMED => DEVELOPER, CLOSED => MAJOR );
+	 * example: $g_set_status_threshold = array( ACKNOWLEDGED => MANAGER, CONFIRMED => DEVELOPER, CLOSED => MANAGER );
 	 * @global array $g_set_status_threshold
 	 */
-	$g_set_status_threshold = array( NEW_ => REPORTER, CLOSED => DEVELOPER );
+	$g_set_status_threshold = array( NEW_ => REPORTER );
 
 	/**
 	 * Allow a bug to have no category
@@ -2773,15 +2773,7 @@
 									 'assigned'		=> '#c2dfff', // blue   (sky blue    #729fcf)
 									 'resolved'		=> '#d2f5b0', // green  (chameleon   #8ae234)
 									 'closed'		=> '#c9ccc4'); // grey  (aluminum    #babdb6)
-	/*
-	$g_status_colors		= array( 'new'			=> '#fcbdbd', // red    (scarlet red #ef2929)
-									 'feedback'		=> '#e3b7eb', // purple (plum        #75507b)
-									 'acknowledged'	=> '#ffcd85', // orange (orango      #f57900)
-									 'confirmed'	=> '#fff494', // yellow (butter      #fce94f)
-									 'assigned'		=> '#c2dfff', // blue   (sky blue    #729fcf)
-									 'resolved'		=> '#d2f5b0', // green  (chameleon   #8ae234)
-									 'closed'		=> '#c9ccc4'); // grey  (aluminum    #babdb6)
-	*/
+
 	/**
 	 * The padding level when displaying project ids
 	 *  The bug id will be padded with 0's up to the size given
@@ -3002,7 +2994,7 @@
 	 * directly use MantisBT to edit them.
 	 * @global string $g_access_levels_enum_string
 	 */
-	$g_access_levels_enum_string		= '10:viewer,25:reporter,40:updater,55:developer,70:major,90:administrator';
+	$g_access_levels_enum_string		= '10:viewer,25:reporter,40:updater,55:developer,70:manager,90:administrator';
 
 	/**
 	 *
@@ -3043,9 +3035,7 @@
 	 *
 	 * @global string $g_status_enum_string
 	 */
-	 
-	//$g_status_enum_string				= '10:new,20:feedback,30:acknowledged,40:confirmed,50:assigned,80:resolved,90:closed';
-	$g_status_enum_string				= '10:new,40:confirmed,80:resolved,90:closed';
+	$g_status_enum_string				= '10:new,20:feedback,30:acknowledged,40:confirmed,50:assigned,80:resolved,90:closed';
 
 	/**
 	 * @@@ for documentation, the values in this list are also used to define variables in the language files
@@ -3218,7 +3208,7 @@
 	 * Threshold needed to link/unlink custom field to/from a project
 	 * @global int $g_custom_field_link_threshold
 	 */
-	$g_custom_field_link_threshold = MAJOR;
+	$g_custom_field_link_threshold = MANAGER;
 
 	/**
 	 * Whether to start editng a custom field immediately after creating it
@@ -3232,7 +3222,7 @@
 
 	/**
 	 * Add custom options to the main menu.  For example:
-	 * $g_main_menu_custom_options = array(	array( "My Link",  MAJOR,       'my_link.php' ),
+	 * $g_main_menu_custom_options = array(	array( "My Link",  MANAGER,       'my_link.php' ),
 	 *					array( "My Link2", ADMINISTRATOR, 'my_link2.php' ) );
 	 * Note that if the caption is found in custom_strings_inc.php, then it will be replaced by the
 	 * translated string.  Options will only be added to the menu if the current logged in user has
@@ -3387,11 +3377,11 @@
 	 */
 	$g_my_view_boxes = array (
 		'assigned'      => '1',
-		'unassigned'    => '3',
-		'reported'      => '5',
-		'resolved'      => '6',
-		'recent_mod'	=> '4',
-		'monitored'		=> '2',
+		'unassigned'    => '2',
+		'reported'      => '3',
+		'resolved'      => '4',
+		'recent_mod'	=> '5',
+		'monitored'		=> '6',
 		'feedback'		=> '0',
 		'verify'		=> '0',
 		'my_comments'	=> '0'
@@ -3679,7 +3669,7 @@
 	 * access level required to run reports
 	 * @global int $g_time_tracking_reporting_threshold
 	 */
-	$g_time_tracking_reporting_threshold = MAJOR;
+	$g_time_tracking_reporting_threshold = MANAGER;
 
 	/**
 	 * allow time tracking to be recorded without a bugnote
@@ -3707,7 +3697,7 @@
 	 * Threshold needed to be able to create and modify global profiles
 	 * @global int $g_manage_global_profile_threshold
 	 */
-	$g_manage_global_profile_threshold = MAJOR;
+	$g_manage_global_profile_threshold = MANAGER;
 
 	/**
 	 * Allows the users to enter free text when reporting/updating issues
