@@ -100,70 +100,7 @@
 
 <br />
 
-<form method="post" action="view_all_set.php">
-<?php # CSRF protection not required here - form does not result in modifications ?>
-<input type="hidden" name="type" value="1" />
-<input type="hidden" name="print" value="1" />
-<input type="hidden" name="offset" value="0" />
-<input type="hidden" name="<?php echo FILTER_PROPERTY_SORT_FIELD_NAME; ?>" value="<?php echo $f_sort ?>" />
-<input type="hidden" name="<?php echo FILTER_PROPERTY_SORT_DIRECTION; ?>" value="<?php echo $f_dir ?>" />
 
-<table class="width100" cellpadding="2px">
-<?php
-	#<SQLI> Excel & Print export
-	#$f_bug_array stores the number of the selected rows
-	#$t_bug_arr_sort is used for displaying
-	#$f_export is a string for the word and excel pages
-
-	$f_bug_arr = gpc_get_int_array( 'bug_arr', array() );
-	$f_bug_arr[$row_count]=-1;
-
-	for( $i=0; $i < $row_count; $i++ ) {
-		if ( isset( $f_bug_arr[$i] ) ) {
-			$index = $f_bug_arr[$i];
-			$t_bug_arr_sort[$index]=1;
-		}
-	}
-	$f_export = implode( ',', $f_bug_arr );
-
-	$t_icon_path = config_get( 'icon_path' );
-?>
-
-<tr>
-	<td colspan="<?php echo $t_num_of_columns ?>">
-<?php
-		if ( 'DESC' == $f_dir ) {
-			$t_new_dir = 'ASC';
-		} else {
-			$t_new_dir = 'DESC';
-		}
-
-		$t_search = urlencode( $f_search );
-
-		$t_icons = array(
-			array( 'print_all_bug_page_word', 'word', '', 'fileicons/doc.gif', 'Word 2000' ),
-			array( 'print_all_bug_page_word', 'html', 'target="_blank"', 'ie.gif', 'Word View' ) );
-
-		foreach ( $t_icons as $t_icon ) {
-			echo '<a href="' . $t_icon[0] . '.php' .
-				'?' . FILTER_PROPERTY_FREE_TEXT . "=$t_search" .
-				'&amp;' . FILTER_PROPERTY_SORT_FIELD_NAME . "=$f_sort" .
-				'&amp;' . FILTER_PROPERTY_SORT_DIRECTION . "=$t_new_dir" .
-				'&amp;type_page=' . $t_icon[1] .
-				"&amp;export=$f_export" .
-				"&amp;show_flag=$t_show_flag" .
-				'" ' . $t_icon[2] . '>' .
-				'<img src="' . $t_icon_path . $t_icon[3] . '" border="0" align="absmiddle" alt="' . $t_icon[4] . '" /></a> ';
-		}
-?>
-	</td>
-</tr>
-<?php #<SQLI> ?>
-</table>
-
-</form>
-
-<br />
 
 <form method="post" action="print_all_bug_page.php">
 <?php # CSRF protection not required here - form does not result in modifications ?>
