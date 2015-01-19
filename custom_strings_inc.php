@@ -14,6 +14,7 @@
 		$s_upload_file_button = 'Foto hochladen';
 		$s_upload_files_button = 'Foto hochladen';
 		$s_add_new_relationship = 'Verwandte Meldung';
+		$s_access_levels_enum_string = '10:Betrachter,25:Reporter,40:Sachbearbeiter,55:Entwickler,70:Manager,90:Administrator';
 	
 	}
 	
