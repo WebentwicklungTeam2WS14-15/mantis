@@ -67,7 +67,7 @@
 	//$tpl_show_os = in_array( 'os', $t_fields );
 	//$tpl_show_os_version = in_array( 'os_version', $t_fields );
 	$tpl_show_status = in_array( 'status', $t_fields );
-	$tpl_show_resolution = in_array( 'resolution', $t_fields );
+	//$tpl_show_resolution = in_array( 'resolution', $t_fields );
 	$tpl_show_projection = in_array( 'projection', $t_fields );
 	//$tpl_show_eta = in_array( 'eta', $t_fields );
 	$tpl_show_versions = version_should_show_product_version( $tpl_bug->project_id );
