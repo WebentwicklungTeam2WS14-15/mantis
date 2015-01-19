@@ -76,4 +76,24 @@
 	$g_roadmap_view_threshold = UPDATER;
 	$g_tag_view_threshold = UPDATER;
 	
+		$g_administrator_email	= 'administrator@example.com';
+
+	/**
+	 * Webmaster email
+	 * @global string $g_webmaster_email
+	 */
+	$g_webmaster_email		= 'webmaster@dorsten.de';
+
+	/**
+	 * the sender email, part of 'From: ' header in emails
+	 * @global string $g_from_email
+	 */
+ 	$g_from_email			= 'schadensmeldung@dorsten.de';
+
+	/**
+	 * the sender name, part of 'From: ' header in emails
+	 * @global string $g_from_name
+	 */
+	$g_from_name			= 'Dorsten Schadensmeldung';
+	
 ?>
