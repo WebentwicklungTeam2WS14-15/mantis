@@ -1262,11 +1262,11 @@ function email_format_bug_message( $p_visible_bug_data ) {
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_project' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_bug' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_category' );
-	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_reproducibility' );
-	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_severity' );
-	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_priority' );
+	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_reproducibility' );
+	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_severity' );
+	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_priority' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_status' );
-	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_target_version' );
+	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_target_version' );
 
 	# custom fields formatting
 	foreach( $p_visible_bug_data['custom_fields'] as $t_custom_field_name => $t_custom_field_data ) {
