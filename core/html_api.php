@@ -1430,9 +1430,6 @@ function html_button_bug_change_status( $p_bug ) {
 		echo "<form method=\"post\" action=\"bug_change_status_page.php\">";
 		# CSRF protection not required here - form does not result in modifications
 
-		$t_button_text = lang_get( 'bug_status_to_button' );
-		echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" />";
-
 		echo " <select name=\"new_status\">";
 
 		# space at beginning of line is important
@@ -1445,7 +1442,10 @@ function html_button_bug_change_status( $p_bug ) {
 
 		$t_bug_id = string_attribute( $p_bug->id );
 		echo "<input type=\"hidden\" name=\"id\" value=\"$t_bug_id\" />\n";
-
+		
+		$t_button_text = lang_get( 'bug_status_to_button' );
+		echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" />";
+		
 		echo "</form>\n";
 	}
 }
@@ -1500,11 +1500,7 @@ function html_button_bug_assign_to( $p_bug ) {
 	}
 
 	echo "<form method=\"post\" action=\"bug_assign.php\">";
-	echo form_security_field( 'bug_assign' );
-
-	$t_button_text = lang_get( 'bug_assign_to_button' );
-	echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" />";
-
+	
 	echo " <select name=\"handler_id\">";
 
 	# space at beginning of line is important
@@ -1542,6 +1538,11 @@ function html_button_bug_assign_to( $p_bug ) {
 
 	$t_bug_id = string_attribute( $p_bug->id );
 	echo "<input type=\"hidden\" name=\"bug_id\" value=\"$t_bug_id\" />\n";
+	
+	echo form_security_field( 'bug_assign' );
+
+	$t_button_text = lang_get( 'bug_assign_to_button' );
+	echo "<input type=\"submit\" class=\"button\" value=\"$t_button_text\" />";
 
 	echo "</form>\n";
 }
