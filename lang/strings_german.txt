@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** MantisBT - a php based bugtracking system
  *
  * Copyright (C) 2000 - 2002  Kenzaburo Ito - kenito@300baud.org
@@ -316,7 +316,7 @@ $s_administrator = 'Administrator';
 $s_myself = 'Ich selbst';
 $s_default_access_level = 'Standard Zugangsrecht';
 $s_issue_status_percentage = 'Eintragsstatus in Prozent';
-$s_access_levels_enum_string = '10:Betrachter,25:Reporter,40:Tester,55:Entwickler,70:Manager,90:Administrator';
+$s_access_levels_enum_string = '10:Betrachter,25:Reporter,40:Sachbearbeiter,55:Entwickler,70:Manager,90:Administrator';
 $s_project_status_enum_string = '10:Entwicklung,30:Freigabe,50:stabil,70:veraltet';
 $s_project_view_state_enum_string = '10:öffentlich,50:privat';
 $s_view_state_enum_string = '10:öffentlich,50:privat';
