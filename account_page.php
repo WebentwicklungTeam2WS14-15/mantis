@@ -104,11 +104,6 @@
 		<td class="form-title">
 			<?php echo lang_get( 'edit_account_title' ) ?>
 		</td>
-<<<<<<< HEAD
-
-=======
-		<!-- Modified by Patrick Dehnel and Marco Horak -->
->>>>>>> 75e3e08edf6518ef23762331b1dd3a5691ad1c2b
 	</tr>
 
 <?php if ( !helper_call_custom_function( 'auth_can_change_password', array() ) ) { ?> <!-- With LDAP -->
