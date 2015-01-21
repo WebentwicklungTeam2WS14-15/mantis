@@ -61,6 +61,8 @@
 	$t_page_count = null;
 
 	$t_boxes = config_get( 'my_view_boxes' );
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	if ( user_get_access_level( $t_current_user_id, helper_get_current_project() ) == UPDATER ) {
 		$t_boxes = array ( 'assigned' => '1',
 						   'unassigned' => '0',

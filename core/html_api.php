@@ -510,7 +510,10 @@ function html_login_info() {
 			echo ' | <a href="' . helper_mantis_url( 'signup_page.php' ) . '">' . lang_get( 'signup_link' ) . '</a>';
 		}
 	} else {
+		
 		echo lang_get( 'logged_in_as' ), ": <span class=\"italic\">", string_html_specialchars( $t_realname ), "</span> <span class=\"small\">";
+		//Modified by Patrick Dehnel and Marco Horak
+		//
 		//echo is_blank( $t_realname ) ? "($t_access_level)" : "(" . string_html_specialchars( $t_realname ) . " - $t_access_level)";
 		echo "</span>";
 	}
@@ -688,6 +691,8 @@ function html_footer( $p_file = null ) {
 	# We don't have a button anymore, so for now we will only show the resized version of the logo when not on login page.
 	if ( !is_page_name( 'login_page' ) ) {
 		echo '<div align="right">';
+		//Modified by Patrick Dehnel and Marco Horak
+		//
 		echo '<a href="http://www.hochschule-rhein-waal.de" target="_blank" title="Hochschule Rhein-Waal"><img src=" ' . helper_mantis_url( 'images/hsrw_logo.png' ) . '"alt="Powered by Hochschule Rhein-Waal" border="0" /></a>';
 		echo '</div>', "\n";
 	}
@@ -779,11 +784,15 @@ function print_menu() {
 		}
 
 		# Changelog Page
+		//Modified by Patrick Dehnel and Marco Horak
+		//
 		//if( access_has_project_level( config_get( 'view_changelog_threshold' ) ) ) {
 		//	$t_menu_options[] = '<a href="' . helper_mantis_url( 'changelog_page.php">' ) . lang_get( 'changelog_link' ) . '</a>';
 		//}
 
 		# Roadmap Page
+		//Modified by Patrick Dehnel and Marco Horak
+		//
 		//if( access_has_project_level( config_get( 'roadmap_view_threshold' ) ) ) {
 		//	$t_menu_options[] = '<a href="' . helper_mantis_url( 'roadmap_page.php">' ) . lang_get( 'roadmap_link' ) . '</a>';
 		//}

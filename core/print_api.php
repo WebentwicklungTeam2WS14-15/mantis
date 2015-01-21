@@ -1770,6 +1770,8 @@ document.getElementById( span ).style.display = displayType;
 				$t_preview_style = 'border: 0;';
 				$t_max_width = config_get( 'preview_max_width' );
 				if( $t_max_width > 0 ) {
+					//Modified by Patrick Dehnel and Marco Horak
+					//
 					$t_preview_style .= ' width:' . $t_max_width . '%;';
 				}
 

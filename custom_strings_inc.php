@@ -7,7 +7,8 @@
 	switch( $g_active_language) {
 	
 	default: # german
-	
+		//Modified by Patrick Dehnel and Marco Horak
+		//
 		$s_account_link = 'Mein Profil';
 		$s_upload_file = 'Foto hochladen';
 		$s_upload_files = 'Fotos hochladen';

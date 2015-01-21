@@ -11,6 +11,9 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
+# Modified by Patrick Dehnel and Marco Horak
+# Hochschule Rhein Waal 2014 / 2015
+#
 # You should have received a copy of the GNU General Public License
 # along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -1262,10 +1265,14 @@ function email_format_bug_message( $p_visible_bug_data ) {
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_project' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_bug' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_category' );
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_reproducibility' );
 	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_severity' );
 	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_priority' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_status' );
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$t_message .= email_format_attribute( $p_visible_bug_data, 'email_target_version' );
 
 	# custom fields formatting

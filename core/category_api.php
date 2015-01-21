@@ -593,6 +593,8 @@ function category_get_field( $p_category_id, $p_field_name ) {
  * @return string category full name
  * @access public
  */
+//Modified by Patrick Dehnel and Marco Horak
+//
 function category_full_name( $p_category_id, $p_show_project = false, $p_current_project = null ) {
 	if( 0 == $p_category_id ) {
 		# No Category

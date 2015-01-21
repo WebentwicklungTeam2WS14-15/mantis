@@ -146,6 +146,8 @@
 	$t_fields = columns_filter_disabled( $t_fields );
 
 	$tpl_show_category = in_array( 'category_id', $t_fields );
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_reproducibility = in_array( 'reproducibility', $t_fields );
 	//$tpl_show_eta = in_array( 'eta', $t_fields );
 	//$tpl_show_severity = in_array( 'severity', $t_fields );
@@ -163,9 +165,13 @@
 	$tpl_show_product_version = $tpl_show_versions && in_array( 'product_version', $t_fields );
 	$tpl_show_product_build = $tpl_show_versions && in_array( 'product_build', $t_fields ) && config_get( 'enable_product_build' ) == ON;
 	$tpl_show_target_version = $tpl_show_versions && in_array( 'target_version', $t_fields ) && access_has_project_level( config_get( 'roadmap_update_threshold' ) );
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_additional_info = in_array( 'additional_info', $t_fields );
 	$tpl_show_due_date = in_array( 'due_date', $t_fields ) && access_has_project_level( config_get( 'due_date_update_threshold' ), helper_get_current_project(), auth_get_current_user_id() );
 	$tpl_show_attachments = in_array( 'attachments', $t_fields ) && file_allow_bug_upload();
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_view_state = in_array( 'view_state', $t_fields ) && access_has_project_level( config_get( 'set_view_status_threshold' ) );
 
 	# don't index bug report page

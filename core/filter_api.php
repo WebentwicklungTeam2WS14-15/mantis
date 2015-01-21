@@ -54,6 +54,8 @@ require_once( 'tag_api.php' );
  */
 require_once( $g_absolute_path . 'config_filter_defaults_inc.php' );
 
+//Modified by Patrick Dehnel and Marco Horak
+//
 require_once( 'access_api.php' );
 
 /**
@@ -1317,11 +1319,14 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 	}
 
 	# handler
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	$user_level = access_cache_matrix_user($c_user_id)[1];
 	//NUR DIE TICKETS DIE ZUGEWIESEN WURDEN ANZEIGEN
 	
 	
-	
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	if( $user_level < DEVELOPER ) {
 		$t_clauses = array();
 
@@ -1979,6 +1984,8 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 			}
 
 			$c_search = '%' . $t_search_term . '%';
+			//Modified by Patrick Dehnel and Marco Horak
+			//
 			// $t_textsearch_where_clause .= '( ' . db_helper_like( 'summary' ) .
 				// ' OR ' . db_helper_like( "$t_bug_text_table.description" ) .
 				// ' OR ' . db_helper_like( "$t_bug_text_table.steps_to_reproduce" ) .
@@ -2140,6 +2147,8 @@ function filter_draw_selection_area( $p_page_number, $p_for_screen = true ) {
  * @param bool $p_for_screen
  * @param bool $p_expanded
  */
+//Modified by Patrick Dehnel and Marco Horak
+//
 function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_expanded = true ) {
 	$t_form_name_suffix = $p_expanded ? '_open' : '_closed';
 
@@ -3440,6 +3449,8 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 		<tr>
 			<td colspan="2">
 				<?php
+					//Modified by Patrick Dehnel and Marco Horak
+					//
 					//collapse_icon( 'filter' );
 	echo lang_get( 'search' ) . '&#160;';
 	echo '<input type="text" size="16" name="', FILTER_PROPERTY_FREE_TEXT, '" value="', string_attribute( $t_filter[FILTER_PROPERTY_FREE_TEXT] ), '" />';

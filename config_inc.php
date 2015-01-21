@@ -4,11 +4,12 @@
 	# Hochschule Rhein-Waal 2014/2015
 	#
 	
+	// Datenbank Informationen
 	$g_hostname = 'localhost';
 	$g_db_type = 'mysql';
 	$g_database_name = 'mantis';
 	$g_db_username = 'root';
-	$g_db_password = '12345';
+	$g_db_password = '';
     $g_css_include_file = '/theme-colorized/colorized.css';
 	
 	#E-Mail Daten ändern!
@@ -25,25 +26,24 @@
 	#config_defaults_inc Änderungen
 	$g_allow_signup = OFF;
 	$g_admin_checks = OFF;
+	// Erlaubt alle Bildgrößen bis 9999*9999
 	$g_preview_attachments_inline_max_size = 9999 * 9999;
+	// Zeigt das Bild zu 80% der Bildschirmbreite an
 	$g_preview_max_width = 80;
+	// Vernachlässigt Bildhöhe
 	$g_preview_max_height = 0;
-	$g_handle_bug_threshold                 = UPDATER;
+	// Schwellwert für Bug Zuweisung
+	$g_handle_bug_threshold = UPDATER;
 	$g_update_bug_status_threshold = REPORTER;
 	$g_set_status_threshold = array( NEW_ => REPORTER, CLOSED => MANAGER );
+	// Definiert Rollen
+	// Reporter = Webapp
+	// Updater = Sachbearbeiter
+	// Manager = z.B. Bürgermeister
+	// Administrator = Kontoverwaltung
 	$g_access_levels_enum_string = '25:reporter,40:updater,70:manager,90:administrator';
+	// Bugstatus
 	$g_status_enum_string = '10:new,40:confirmed,80:resolved,90:closed';
-	$g_my_view_boxes = array (
-		'assigned'      => '1',
-		'unassigned'    => '3',
-		'reported'      => '5',
-		'resolved'      => '6',
-		'recent_mod'	=> '4',
-		'monitored'		=> '2',
-		'feedback'		=> '0',
-		'verify'		=> '0',
-		'my_comments'	=> '7'
-	);
 	$g_show_avatar_threshold = MANAGER;
 	$g_private_news_threshold	= MANAGER;
 	$g_reminder_receive_threshold = MANAGER;
@@ -75,8 +75,7 @@
 	$g_view_changelog_threshold = UPDATER;
 	$g_roadmap_view_threshold = UPDATER;
 	$g_tag_view_threshold = UPDATER;
-	
-		$g_administrator_email	= 'administrator@example.com';
+	$g_administrator_email	= 'administrator@example.com';
 
 	/**
 	 * Webmaster email

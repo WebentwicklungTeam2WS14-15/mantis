@@ -670,7 +670,8 @@ function access_get_status_threshold( $p_status, $p_project_id = ALL_PROJECTS ) 
 	}
 }
 
-
+//Modified by Patrick Dehnel and Marco Horak
+//
 function access_assigned_bug( $p_bug_id){	
 	if ($p_bug_id->handler_id == auth_get_current_user_id() || access_cache_matrix_user (auth_get_current_user_id())[1] >= DEVELOPER){
 		return true;

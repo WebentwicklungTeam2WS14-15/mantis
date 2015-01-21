@@ -68,7 +68,9 @@
 		html_page_top( bug_format_summary( $f_bug_id, SUMMARY_CAPTION ) );
 		print_recently_visited();
 	}
-
+	
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	if (access_assigned_bug( $tpl_bug )){
 	
 	$t_action_button_position = config_get( 'action_button_position' );
@@ -155,6 +157,8 @@
 		}
 	}
 
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_reporter = in_array( 'reporter', $t_fields );
 	$tpl_show_handler = in_array( 'handler', $t_fields ) && access_has_bug_level( config_get( 'view_handler_threshold' ), $f_bug_id );
 	$tpl_show_additional_information = !is_blank( $tpl_bug->additional_information ) && in_array( 'additional_info', $t_fields );
@@ -178,14 +182,22 @@
 	$tpl_can_attach_tag = $tpl_show_tags && !$tpl_force_readonly && access_has_bug_level( config_get( 'tag_attach_threshold' ), $f_bug_id );
 	$tpl_show_category = in_array( 'category_id', $t_fields );
 	$tpl_category = $tpl_show_category ? string_display_line( category_full_name( $tpl_bug->category_id ) ) : '';
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_priority = in_array( 'priority', $t_fields );
 	$tpl_priority = $tpl_show_priority ? string_display_line( get_enum_element( 'priority', $tpl_bug->priority ) ) : '';
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_severity = in_array( 'severity', $t_fields );
 	$tpl_severity = $tpl_show_severity ? string_display_line( get_enum_element( 'severity', $tpl_bug->severity ) ) : '';
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_reproducibility = in_array( 'reproducibility', $t_fields );
 	$tpl_reproducibility = $tpl_show_reproducibility ? string_display_line( get_enum_element( 'reproducibility', $tpl_bug->reproducibility ) ): '';
 	$tpl_show_status = in_array( 'status', $t_fields );
 	$tpl_status = $tpl_show_status ? string_display_line( get_enum_element( 'status', $tpl_bug->status ) ) : '';
+	//Modified by Patrick Dehnel and Marco Horak
+	//
 	//$tpl_show_resolution = in_array( 'resolution', $t_fields );
 	$tpl_resolution = $tpl_show_resolution ? string_display_line( get_enum_element( 'resolution', $tpl_bug->resolution ) ) : '';
 	$tpl_show_summary = in_array( 'summary', $t_fields );
@@ -293,7 +305,9 @@
 		echo '<td class="category" width="15%">', $tpl_show_id ? lang_get( 'id' ) : '', '</td>';
 		echo '<td class="category" width="20%">', $tpl_show_project ? lang_get( 'email_project' ) : '', '</td>';
 		echo '<td class="category" width="15%">', $tpl_show_category ? lang_get( 'category' ) : '', '</td>';
-	//	echo '<td class="category" width="15%">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
+		//Modified by Patrick Dehnel and Marco Horak
+		//
+		//echo '<td class="category" width="15%">', $tpl_show_view_state ? lang_get( 'view_status' ) : '', '</td>';
 		echo '<td class="category" width="15%">', $tpl_show_date_submitted ? lang_get( 'date_submitted' ) : '', '</td>';
 		echo '<td class="category" width="20%">', $tpl_show_last_updated ? lang_get( 'last_update' ) : '','</td>';
 		echo '</tr>';
@@ -310,7 +324,9 @@
 		echo '<td>', $tpl_category, '</td>';
 
 		# View Status
-	//	echo '<td>', $tpl_bug_view_state_enum, '</td>';
+		//Modified by Patrick Dehnel and Marco Horak
+		//
+		//echo '<td>', $tpl_bug_view_state_enum, '</td>';
 
 		# Date Submitted
 		echo '<td>', $tpl_date_submitted, '</td>';
@@ -743,7 +759,8 @@
 	if ( $tpl_show_history ) {
 		include( $tpl_mantis_dir . 'history_inc.php' );
 	}
-}
+}	//Modified by Patrick Dehnel and Marco Horak
+	//
 	else{
 		access_denied();
 	}
