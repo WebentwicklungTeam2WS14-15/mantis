@@ -13,6 +13,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Modified by Patrick Dehnel and Marco Horak
+#
 
 	/**
 	 * CALLERS
@@ -101,7 +104,11 @@
 		<td class="form-title">
 			<?php echo lang_get( 'edit_account_title' ) ?>
 		</td>
+<<<<<<< HEAD
 
+=======
+		<!-- Modified by Patrick Dehnel and Marco Horak -->
+>>>>>>> 75e3e08edf6518ef23762331b1dd3a5691ad1c2b
 	</tr>
 
 <?php if ( !helper_call_custom_function( 'auth_can_change_password', array() ) ) { ?> <!-- With LDAP -->
